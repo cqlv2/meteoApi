@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 
 import dev.dto.SuperDto;
 import dev.entity.Member;
-import dev.entity.Ville;
+import dev.entity.City;
 //exemple de json
 //		{
 //			"showWeather":0,

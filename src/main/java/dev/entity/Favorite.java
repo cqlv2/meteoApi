@@ -20,7 +20,7 @@ public class Favorite extends SuperEntity {
 	private Member member;	
 	@OneToOne
 	@JoinColumn( name="ville_id" )
-	private Ville ville;
+	private City ville;
 	//getteur/setteur
 	public Boolean getShowWeather() {
 		return showWeather;
@@ -52,10 +52,10 @@ public class Favorite extends SuperEntity {
 	public void setMember(Member member) {
 		this.member = member;
 	}
-	public Ville getVille() {
+	public City getVille() {
 		return ville;
 	}
-	public void setVille(Ville ville) {
+	public void setVille(City ville) {
 		this.ville = ville;
 	}
 	

@@ -1,4 +1,4 @@
-package dev.controlleur;
+package dev.controller;
 
 import javax.annotation.PostConstruct;
 

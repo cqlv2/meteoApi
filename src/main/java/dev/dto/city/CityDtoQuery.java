@@ -1,26 +1,21 @@
-package dev.entity;
+package dev.dto.city;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import dev.dto.SuperDto;
 
-@Entity
-public class Ville extends SuperEntity {
 
+public class CityDtoQuery extends SuperDto {
+	
 	private String nomVille;
 	private String codeInsee;
 	private String codePostal;
 	private Long nbHab;
 	private String region;
-	
-	@OneToMany(targetEntity = Weather.class, mappedBy = "ville")
-	private List<Weather> meteos = new ArrayList<>();
-	
-	@OneToMany(targetEntity = Polluant.class, mappedBy = "ville")
-	private List<Polluant> polluants = new ArrayList<>();
-	
+	private List<Long> meteosId = new ArrayList<>();
+	private List<Long> polluantsId = new ArrayList<>();
+	//getter setter
 	public String getNomVille() {
 		return nomVille;
 	}
@@ -51,19 +46,19 @@ public class Ville extends SuperEntity {
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	public List<Weather> getMeteos() {
-		return meteos;
+	public List<Long> getMeteosId() {
+		return meteosId;
 	}
-	public void setMeteos(List<Weather> meteos) {
-		this.meteos = meteos;
+	public void setMeteosId(List<Long> meteosId) {
+		this.meteosId = meteosId;
 	}
-	public List<Polluant> getPolluants() {
-		return polluants;
+	public List<Long> getPolluantsId() {
+		return polluantsId;
 	}
-	public void setPolluants(List<Polluant> polluants) {
-		this.polluants = polluants;
+	public void setPolluantsId(List<Long> polluantsId) {
+		this.polluantsId = polluantsId;
 	}
 	
 	
-	
+
 }

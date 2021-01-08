@@ -4,7 +4,7 @@ import dev.dto.favorite.FavoriteDtoQuery;
 import dev.dto.favorite.FavoriteDtoReponse;
 import dev.entity.Favorite;
 import dev.entity.Member;
-import dev.entity.Ville;
+import dev.entity.City;
 
 public class FavoriteTransformer {
 
@@ -21,7 +21,7 @@ public class FavoriteTransformer {
 		f.setShowWeather(dtoQuery.getShowWeather());
 
 		if (dtoQuery.getVilleId() != null) {
-			Ville v = new Ville();
+			City v = new City();
 			v.setId(dtoQuery.getVilleId());
 			f.setVille(v);
 		}

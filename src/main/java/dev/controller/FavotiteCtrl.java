@@ -1,4 +1,4 @@
-package dev.controlleur;
+package dev.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.dto.subject.SubjectDtoQuery;
-import dev.entity.ForumSubject;
-import dev.service.ForumSubjectService;
-@RestController
-@RequestMapping("/api/forum/subject")
-public class ForumSubjetCtrl extends SuperController<ForumSubject, ForumSubjectService>{
+import dev.dto.favorite.FavoriteDtoQuery;
+import dev.entity.Favorite;
+import dev.service.FavoriteService;
 
+@RestController
+@RequestMapping("api/favorite")
+public class FavotiteCtrl extends SuperController<Favorite, FavoriteService>{
+
+	
 	/**
 	 * add a new entry to the database
 	 * 
@@ -21,7 +23,7 @@ public class ForumSubjetCtrl extends SuperController<ForumSubject, ForumSubjectS
 	 * @return a response entity(ok) with 1 value formatted in DTO
 	 */
 	@PostMapping
-	public ResponseEntity<?> add(@RequestBody SubjectDtoQuery dtoQuery) {
+	public ResponseEntity<?> add(@RequestBody FavoriteDtoQuery dtoQuery) {
 		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
 	}
 
@@ -32,7 +34,8 @@ public class ForumSubjetCtrl extends SuperController<ForumSubject, ForumSubjectS
 	 * @return a response entity(ok) with 1 value formatted in DTO
 	 */
 	@PutMapping
-	public ResponseEntity<?> edit(@RequestBody SubjectDtoQuery dtoQuery) {
+	public ResponseEntity<?> edit(@RequestBody FavoriteDtoQuery dtoQuery) {
 		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
 	}
+	
 }

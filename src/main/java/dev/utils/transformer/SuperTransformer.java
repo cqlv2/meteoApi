@@ -1,11 +1,14 @@
 package dev.utils.transformer;
 
 import dev.dto.answer.AnswerDtoQuery;
+import dev.dto.city.CityDtoQuery;
 import dev.dto.comment.CommentDtoQuery;
 import dev.dto.favorite.FavoriteDtoQuery;
 import dev.dto.member.MemberDtoQuery;
 import dev.dto.subject.SubjectDtoQuery;
 import dev.dto.topic.TopicDtoQuery;
+import dev.dto.weather.WeatherDtoQuery;
+import dev.entity.City;
 import dev.entity.Favorite;
 import dev.entity.ForumAnswer;
 import dev.entity.ForumComment;
@@ -15,12 +18,14 @@ import dev.entity.Member;
 import dev.entity.Right;
 import dev.entity.Role;
 import dev.entity.SuperEntity;
+import dev.entity.Weather;
 
 /**
  * referral tool for the use of the transformer corresponding to the entity's
  * class
  * 
  * @author cql-v2
+ * @author louise
  * @version 1.0
  */
 public class SuperTransformer {
@@ -57,6 +62,13 @@ public class SuperTransformer {
 		case "ForumTopic":
 			return ForumTopicTransformer.entityToDtoResponse((ForumTopic) entity);
 			
+		case "City":
+			return CityTransformer.entityToDtoResponse((City) entity);
+			
+		case "Weather":
+			return WeatherTransformer.entityToDtoResponse((Weather) entity);
+			
+			
 			
 
 		default:
@@ -86,6 +98,12 @@ public class SuperTransformer {
 			
 		case "TopicDtoQuery":
 			return ForumTopicTransformer.dtoToEntity((TopicDtoQuery) dtoQuery);
+			
+		case "CityDtoQuery":
+			return CityTransformer.dtoToEntity((CityDtoQuery) dtoQuery);
+			
+		case "WeatherDtoQuery":
+			return WeatherTransformer.dtoToEntity((WeatherDtoQuery) dtoQuery);
 			
 			
 			

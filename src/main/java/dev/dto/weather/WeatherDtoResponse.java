@@ -1,34 +1,33 @@
-package dev.entity;
+package dev.dto.weather;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import dev.dto.SuperDto;
+import dev.entity.Weather;
 
-@Entity
-public class Weather extends SuperEntity {
+
+public class WeatherDtoResponse extends SuperDto{
 	
-	@Column(scale = 4, precision = 2)
 	private Double temp;
-	@Column(scale = 4, precision = 2)
 	private Double tempMax;
-	@Column(scale = 4, precision = 2)
 	private Double tempMin;
 	private Integer windDirection;
-	@Column(scale = 4, precision = 2)
 	private Double windSpeed;
-	@Column(scale = 4, precision = 2)
 	private Double humidity;
-	@Column(scale = 4, precision = 2)
 	private Double pressure;
-	
 	//TODO 
 	//private Meteo prevision;
 	
-	@ManyToOne
-	@JoinColumn(name = "ville_id")
-	private City ville;
+	public WeatherDtoResponse(Weather entity) {
+		this.id = entity.getId();
+		this.temp = entity.getTemp();
+		this.tempMax = entity.getTempMax();
+		this.tempMin = entity.getTempMin();
+		this.windDirection = entity.getWindDirection();
+		this.windSpeed = entity.getWindSpeed();
+		this.humidity = entity.getHumidity();
+		this.pressure = entity.getPressure();
+	}
 	
+	// getter setter
 	public Double getTemp() {
 		return temp;
 	}
@@ -71,21 +70,8 @@ public class Weather extends SuperEntity {
 	public void setPressure(Double pressure) {
 		this.pressure = pressure;
 	}
-	public City getVille() {
-		return ville;
-	}
-	public void setVille(City ville) {
-		this.ville = ville;
-	}
 	
 	
-//	public Meteo getPrevision() {
-//		return prevision;
-//	}
-//	public void setPrevision(Meteo prevision) {
-//		this.prevision = prevision;
-//	}
-//	
 	
 
 }

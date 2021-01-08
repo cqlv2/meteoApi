@@ -1,4 +1,4 @@
-package dev.controlleur;
+package dev.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,15 +7,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.dto.favorite.FavoriteDtoQuery;
-import dev.entity.Favorite;
-import dev.service.FavoriteService;
+import dev.dto.city.CityDtoQuery;
+import dev.entity.City;
+import dev.service.CityService;
 
 @RestController
-@RequestMapping("api/favorite")
-public class FavotiteCtrl extends SuperController<Favorite, FavoriteService>{
+@RequestMapping("/api/city")
+public class CityCtrl extends SuperController<City, CityService> {
 
-	
 	/**
 	 * add a new entry to the database
 	 * 
@@ -23,7 +22,7 @@ public class FavotiteCtrl extends SuperController<Favorite, FavoriteService>{
 	 * @return a response entity(ok) with 1 value formatted in DTO
 	 */
 	@PostMapping
-	public ResponseEntity<?> add(@RequestBody FavoriteDtoQuery dtoQuery) {
+	public ResponseEntity<?> add(@RequestBody CityDtoQuery dtoQuery) {
 		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
 	}
 
@@ -34,8 +33,7 @@ public class FavotiteCtrl extends SuperController<Favorite, FavoriteService>{
 	 * @return a response entity(ok) with 1 value formatted in DTO
 	 */
 	@PutMapping
-	public ResponseEntity<?> edit(@RequestBody FavoriteDtoQuery dtoQuery) {
+	public ResponseEntity<?> edit(@RequestBody CityDtoQuery dtoQuery) {
 		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
 	}
-	
 }

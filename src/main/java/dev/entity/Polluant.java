@@ -14,7 +14,7 @@ public class Polluant extends SuperEntity{
 	
 	@ManyToOne
 	@JoinColumn(name = "ville_id")
-	private Ville ville;
+	private City ville;
 	
 	public String getNom() {
 		return nom;
@@ -28,10 +28,10 @@ public class Polluant extends SuperEntity{
 	public void setValeur(Double valeur) {
 		this.valeur = valeur;
 	}
-	public Ville getVille() {
+	public City getVille() {
 		return ville;
 	}
-	public void setVille(Ville ville) {
+	public void setVille(City ville) {
 		this.ville = ville;
 	}
 	
