@@ -1,5 +1,7 @@
 package dev.utils.transformer;
 
+import java.time.LocalDate;
+
 import dev.dto.weather.WeatherDtoQuery;
 import dev.dto.weather.WeatherDtoResponse;
 import dev.entity.City;
@@ -14,6 +16,7 @@ public class WeatherTransformer {
 	public static Weather dtoToEntity(WeatherDtoQuery dtoQuery) {
 		Weather w = new Weather();
 		w.setId(dtoQuery.getId() != null ? dtoQuery.getId() : null);
+		w.setDateAdd(dtoQuery.getDateAdd()!=null?dtoQuery.getDateAdd():LocalDate.now());
 		w.setHumidity(dtoQuery.getHumidity());
 		w.setPressure(dtoQuery.getPressure());
 		w.setTemp(dtoQuery.getTemp());

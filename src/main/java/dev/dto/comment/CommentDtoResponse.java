@@ -16,6 +16,7 @@ public class CommentDtoResponse extends SuperDto {
 	// constructeur
 	public CommentDtoResponse(ForumComment entity) {
 		this.id= entity.getId();
+		this.dateAdd = entity.getDateAdd();
 		this.contain = entity.getContain();
 		this.liked = entity.getLiked();
 		// TODO

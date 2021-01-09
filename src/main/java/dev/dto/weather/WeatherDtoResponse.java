@@ -18,6 +18,7 @@ public class WeatherDtoResponse extends SuperDto{
 	
 	public WeatherDtoResponse(Weather entity) {
 		this.id = entity.getId();
+		this.dateAdd = entity.getDateAdd();
 		this.temp = entity.getTemp();
 		this.tempMax = entity.getTempMax();
 		this.tempMin = entity.getTempMin();

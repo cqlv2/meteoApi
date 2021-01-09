@@ -15,6 +15,7 @@ public class FavoriteDtoReponse extends SuperDto{
 	// constructeur
 	public FavoriteDtoReponse(Favorite entity) {
 		this.id = entity.getId();
+		this.dateAdd = entity.getDateAdd();
 		this.showWeather = entity.getShowWeather();
 		this.showPolluants = entity.getShowPolluants();
 		this.polluant = entity.getPolluant();

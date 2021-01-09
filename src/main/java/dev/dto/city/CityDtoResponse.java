@@ -12,86 +12,89 @@ import dev.entity.Weather;
 import dev.utils.transformer.PolluantTransformer;
 import dev.utils.transformer.WeatherTransformer;
 
-public class CityDtoResponse extends SuperDto{
-	
-	private String nomVille;
-	private String codeInsee;
-	private String codePostal;
-	private Long nbHab;
-	private String region;
-	private List<WeatherDtoResponse> meteos = new ArrayList<>();
+public class CityDtoResponse extends SuperDto {
+
+	private String cityName;
+	private String inseeCode;
+
+	private Long population;
+	private String state;
+	private String department;
+	private List<WeatherDtoResponse> weathers = new ArrayList<>();
 	private List<PolluantDtoResponse> polluants = new ArrayList<>();
-	/**
-	 * @param nomVille
-	 * @param codeInsee
-	 * @param codePostal
-	 * @param nbHab
-	 * @param region
-	 * @param meteos
-	 * @param polluants
-	 */
+
+	// constructeur
 	public CityDtoResponse(City entity) {
 		this.id = entity.getId();
-		this.nomVille = entity.getNomVille();
-		this.codeInsee = entity.getCodeInsee();
-		this.codePostal = entity.getCodePostal();
-		this.nbHab = entity.getNbHab();
-		this.region = entity.getRegion();
-		
-		for (Weather weather : entity.getMeteos()) {
-			this.meteos.add(WeatherTransformer.entityToDtoResponse(weather));
+		this.dateAdd = entity.getDateAdd();
+		this.cityName = entity.getCityName();
+		this.inseeCode = entity.getInseeCode();
+		this.population = entity.getPopulation();
+		this.state = entity.getState();
+		this.department = entity.getDepartment();
+		for (Weather weather : entity.getWeathers()) {
+			this.weathers.add(WeatherTransformer.entityToDtoResponse(weather));
 		}
-
 		for (Polluant polluant : entity.getPolluants()) {
 			this.polluants.add(PolluantTransformer.entityToDtoResponse(polluant));
 		}
-		// getter setter
-		
-	
 	}
-	public String getNomVille() {
-		return nomVille;
+
+	// getteurSetteur
+	public String getCityName() {
+		return cityName;
 	}
-	public void setNomVille(String nomVille) {
-		this.nomVille = nomVille;
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
-	public String getCodeInsee() {
-		return codeInsee;
+
+	public String getInseeCode() {
+		return inseeCode;
 	}
-	public void setCodeInsee(String codeInsee) {
-		this.codeInsee = codeInsee;
+
+	public void setInseeCode(String inseeCode) {
+		this.inseeCode = inseeCode;
 	}
-	public String getCodePostal() {
-		return codePostal;
+
+	public Long getPopulation() {
+		return population;
 	}
-	public void setCodePostal(String codePostal) {
-		this.codePostal = codePostal;
+
+	public void setPopulation(Long population) {
+		this.population = population;
 	}
-	public Long getNbHab() {
-		return nbHab;
+
+	public String getState() {
+		return state;
 	}
-	public void setNbHab(Long nbHab) {
-		this.nbHab = nbHab;
+
+	public void setState(String state) {
+		this.state = state;
 	}
-	public String getRegion() {
-		return region;
+
+	public String getDepartment() {
+		return department;
 	}
-	public void setRegion(String region) {
-		this.region = region;
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
-	public List<WeatherDtoResponse> getMeteos() {
-		return meteos;
+
+	public List<WeatherDtoResponse> getWeathers() {
+		return weathers;
 	}
-	public void setMeteos(List<WeatherDtoResponse> meteos) {
-		this.meteos = meteos;
+
+	public void setWeathers(List<WeatherDtoResponse> weathers) {
+		this.weathers = weathers;
 	}
+
 	public List<PolluantDtoResponse> getPolluants() {
 		return polluants;
 	}
+
 	public void setPolluants(List<PolluantDtoResponse> polluants) {
 		this.polluants = polluants;
 	}
-	
-	
 
 }

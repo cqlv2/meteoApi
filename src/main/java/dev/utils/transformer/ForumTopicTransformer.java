@@ -1,5 +1,7 @@
 package dev.utils.transformer;
 
+import java.time.LocalDate;
+
 import dev.dto.topic.TopicDtoQuery;
 import dev.dto.topic.TopicDtoResponse;
 import dev.entity.ForumSubject;
@@ -15,6 +17,7 @@ public class ForumTopicTransformer {
 	public static ForumTopic dtoToEntity(TopicDtoQuery dtoQuery) {
 		ForumTopic ft = new ForumTopic();
 		ft.setId(dtoQuery.getId()!=null?dtoQuery.getId():null);
+		ft.setDateAdd(dtoQuery.getDateAdd()!=null?dtoQuery.getDateAdd():LocalDate.now());
 		ft.setLabel(dtoQuery.getLabel());
 		
 		if(dtoQuery.getMemberId()!=null) {

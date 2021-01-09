@@ -5,60 +5,71 @@ import java.util.List;
 
 import dev.dto.SuperDto;
 
-
 public class CityDtoQuery extends SuperDto {
-	
-	private String nomVille;
-	private String codeInsee;
-	private String codePostal;
-	private Long nbHab;
-	private String region;
-	private List<Long> meteosId = new ArrayList<>();
+
+	private String cityName;
+	private String InseeCode;
+	private Long population;
+	private String state;
+	private String department;
+	private List<Long> weathersId = new ArrayList<>();
 	private List<Long> polluantsId = new ArrayList<>();
-	//getter setter
-	public String getNomVille() {
-		return nomVille;
+
+	// getter setter
+	public String getCityName() {
+		return cityName;
 	}
-	public void setNomVille(String nomVille) {
-		this.nomVille = nomVille;
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
-	public String getCodeInsee() {
-		return codeInsee;
+
+	public String getInseeCode() {
+		return InseeCode;
 	}
-	public void setCodeInsee(String codeInsee) {
-		this.codeInsee = codeInsee;
+
+	public void setInseeCode(String inseeCode) {
+		InseeCode = inseeCode;
 	}
-	public String getCodePostal() {
-		return codePostal;
+
+	public Long getPopulation() {
+		return population;
 	}
-	public void setCodePostal(String codePostal) {
-		this.codePostal = codePostal;
+
+	public void setPopulation(Long population) {
+		this.population = population;
 	}
-	public Long getNbHab() {
-		return nbHab;
+
+	public String getState() {
+		return state;
 	}
-	public void setNbHab(Long nbHab) {
-		this.nbHab = nbHab;
+
+	public void setState(String state) {
+		this.state = state;
 	}
-	public String getRegion() {
-		return region;
+
+	public String getDepartment() {
+		return department;
 	}
-	public void setRegion(String region) {
-		this.region = region;
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
-	public List<Long> getMeteosId() {
-		return meteosId;
+
+	public List<Long> getWeathersId() {
+		return weathersId;
 	}
-	public void setMeteosId(List<Long> meteosId) {
-		this.meteosId = meteosId;
+
+	public void setWeathersId(List<Long> weathersId) {
+		this.weathersId = weathersId;
 	}
+
 	public List<Long> getPolluantsId() {
 		return polluantsId;
 	}
+
 	public void setPolluantsId(List<Long> polluantsId) {
 		this.polluantsId = polluantsId;
 	}
-	
-	
 
 }

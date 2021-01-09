@@ -1,6 +1,8 @@
 package dev.utils.transformer;
 
 
+import java.time.LocalDate;
+
 import dev.dto.member.MemberDtoQuery;
 import dev.dto.member.MemberDtoResponse;
 import dev.entity.Member;
@@ -16,6 +18,7 @@ public class MemberTransformer {
 	public static Member dtoToEntity(MemberDtoQuery dtoRequete) {
 		Member m=new Member();
 		m.setId(dtoRequete.getId()!=null?dtoRequete.getId():null);
+		m.setDateAdd(dtoRequete.getDateAdd()!=null?dtoRequete.getDateAdd():LocalDate.now());
 		m.setEmail(dtoRequete.getEmail());
 		m.setPassword(dtoRequete.getPassword());
 		m.setUsername(dtoRequete.getUsername());

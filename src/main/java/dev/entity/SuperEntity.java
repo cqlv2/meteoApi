@@ -1,5 +1,7 @@
 package dev.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,7 @@ public abstract class SuperEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
+	protected LocalDate dateAdd = LocalDate.now();
 
 	public Long getId() {
 		return id;
@@ -25,6 +28,14 @@ public abstract class SuperEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public LocalDate getDateAdd() {
+		return dateAdd;
+	}
+
+	public void setDateAdd(LocalDate dateAdd) {
+		this.dateAdd = dateAdd;
 	}
 
 }

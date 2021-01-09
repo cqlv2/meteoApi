@@ -1,5 +1,7 @@
 package dev.utils.transformer;
 
+import java.time.LocalDate;
+
 import dev.dto.answer.AnswerDtoQuery;
 import dev.dto.answer.AnswerDtoResponse;
 import dev.entity.ForumAnswer;
@@ -17,6 +19,7 @@ public class ForumAnswerTransformer {
 		ForumAnswer fa = new ForumAnswer();
 
 		fa.setId(dtoQuery.getId() != null ? dtoQuery.getId() : null);
+		fa.setDateAdd(dtoQuery.getDateAdd()!=null?dtoQuery.getDateAdd():LocalDate.now());
 		fa.setContain(dtoQuery.getContain());
 		fa.setLiked(dtoQuery.getLiked());
 

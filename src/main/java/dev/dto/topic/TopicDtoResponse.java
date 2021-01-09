@@ -16,6 +16,7 @@ public class TopicDtoResponse extends SuperDto{
 	//constructeur
 	public TopicDtoResponse(ForumTopic entity) {
 		this.id = entity.getId();
+		this.dateAdd = entity.getDateAdd();
 		this.label = entity.getLabel();
 		for (ForumSubject fs : entity.getSubjects()) {
 		this.subjects.add(ForumSubjectTransformer.entityToDtoResponse(fs));	
