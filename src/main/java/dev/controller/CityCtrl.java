@@ -1,11 +1,14 @@
 package dev.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import dev.dto.city.CityDtoQuery;
 import dev.entity.City;
@@ -36,4 +39,21 @@ public class CityCtrl extends SuperController<City, CityService> {
 	public ResponseEntity<?> edit(@RequestBody CityDtoQuery dtoQuery) {
 		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
 	}
+	
+	
+	
+	@GetMapping("/updatebdd")
+	public void updatebdd() {
+		try {
+			service.updateCityFromApi();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
 }

@@ -26,9 +26,9 @@ public class Weather extends SuperEntity {
 	//private Meteo prevision;
 	
 	@ManyToOne
-	@JoinColumn(name = "ville_id")
-	private City ville;
-	
+	@JoinColumn(name = "city_id")
+	private City city;
+	//getteurSetteur
 	public Double getTemp() {
 		return temp;
 	}
@@ -71,11 +71,11 @@ public class Weather extends SuperEntity {
 	public void setPressure(Double pressure) {
 		this.pressure = pressure;
 	}
-	public City getVille() {
-		return ville;
+	public City getCity() {
+		return city;
 	}
-	public void setVille(City ville) {
-		this.ville = ville;
+	public void setCity(City city) {
+		this.city = city;
 	}
 	
 	

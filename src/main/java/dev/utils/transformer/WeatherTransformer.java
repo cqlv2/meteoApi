@@ -28,7 +28,7 @@ public class WeatherTransformer {
 		if(dtoQuery.getVilleId() != null) {
 			City c = new City();
 			c.setId(dtoQuery.getVilleId());
-			w.setVille(c);
+			w.setCity(c);
 		}
 		return w;
 	}

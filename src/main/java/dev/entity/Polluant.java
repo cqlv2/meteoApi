@@ -8,31 +8,30 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Polluant extends SuperEntity{
 	
-	private String nom;
+	private String label;
 	@Column(scale = 4, precision = 2)
-	private Double valeur;
-	
+	private Double value;
 	@ManyToOne
-	@JoinColumn(name = "ville_id")
-	private City ville;
-	
-	public String getNom() {
-		return nom;
+	@JoinColumn(name = "city_id")
+	private City city;
+	//getteur/setteur
+	public String getLabel() {
+		return label;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setLabel(String label) {
+		this.label = label;
 	}
-	public Double getValeur() {
-		return valeur;
+	public Double getValue() {
+		return value;
 	}
-	public void setValeur(Double valeur) {
-		this.valeur = valeur;
+	public void setValue(Double value) {
+		this.value = value;
 	}
-	public City getVille() {
-		return ville;
+	public City getCity() {
+		return city;
 	}
-	public void setVille(City ville) {
-		this.ville = ville;
+	public void setCity(City city) {
+		this.city = city;
 	}
 	
 	

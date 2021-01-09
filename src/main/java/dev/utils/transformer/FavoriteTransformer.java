@@ -26,7 +26,7 @@ public class FavoriteTransformer {
 		if (dtoQuery.getVilleId() != null) {
 			City v = new City();
 			v.setId(dtoQuery.getVilleId());
-			f.setVille(v);
+			f.setCity(v);
 		}
 		if (dtoQuery.getMemberId() != null) {
 			Member m = new Member();
