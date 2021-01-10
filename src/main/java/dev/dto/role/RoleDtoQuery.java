@@ -10,6 +10,7 @@ public class RoleDtoQuery extends SuperDto {
 	private RoleEnum label;
 	private List<Long> rightsId;
 
+	// getteurSetteur
 	public RoleEnum getLabel() {
 		return label;
 	}

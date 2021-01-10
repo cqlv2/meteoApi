@@ -1,14 +1,23 @@
 package dev.dto.member;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dev.dto.SuperDto;
 
-//*JSON*
+//	*JSON*
 //	{
-//		"id":1,
-//		"username":"userName",
-//		"email":"emaill@mail.com",
-//		"password":"aze123qsd456",
-//		"role": 1
+//		"lastName":"Amianto"                     :string
+//		"firstName":"Sylvain"                  :string
+//		"userName":"cqlV2"                  :string
+//		"email":"samianto@cqlteam.com"      :string
+//		"password":"superPass"              :string
+//		"roleId":1                          :number
+//		"favotiresId":null                  :number aray
+//		"topicsId":null                     :number aray
+//		"subjectsId":null                   :number aray
+//		"answersId":null                    :number aray
+//		"commentsId":null                   :number aray
 //	}
 
 /**
@@ -21,21 +30,41 @@ import dev.dto.SuperDto;
  *
  */
 public class MemberDtoQuery extends SuperDto {
-
-	private String username;
+	private String lastName;
+	private String firstName;
+	private String userName;
 	private String email;
 	private String password;
-
 	private Long roleId;
+	private List<Long> favotiresId = new ArrayList<>();
+	private List<Long> topics = new ArrayList<>();
+	private List<Long> subjects = new ArrayList<>();
+	private List<Long> answers = new ArrayList<>();
+	private List<Long> comments = new ArrayList<>();
 
-	// getteur setteur
-
-	public String getUsername() {
-		return username;
+	//getteurSetteur
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {
@@ -60,6 +89,46 @@ public class MemberDtoQuery extends SuperDto {
 
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
+	}
+
+	public List<Long> getFavotiresId() {
+		return favotiresId;
+	}
+
+	public void setFavotiresId(List<Long> favotiresId) {
+		this.favotiresId = favotiresId;
+	}
+
+	public List<Long> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(List<Long> topics) {
+		this.topics = topics;
+	}
+
+	public List<Long> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(List<Long> subjects) {
+		this.subjects = subjects;
+	}
+
+	public List<Long> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Long> answers) {
+		this.answers = answers;
+	}
+
+	public List<Long> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Long> comments) {
+		this.comments = comments;
 	}
 
 }

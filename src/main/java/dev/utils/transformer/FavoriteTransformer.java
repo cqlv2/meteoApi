@@ -1,15 +1,15 @@
 package dev.utils.transformer;
 
 import dev.dto.favorite.FavoriteDtoQuery;
-import dev.dto.favorite.FavoriteDtoReponse;
+import dev.dto.favorite.FavoriteDtoResponse;
 import dev.entity.City;
 import dev.entity.Favorite;
 import dev.entity.Member;
 
 public class FavoriteTransformer {
 
-	public static FavoriteDtoReponse entityToDtoResponse(Favorite entity) {
-		return new FavoriteDtoReponse(entity);
+	public static FavoriteDtoResponse entityToDtoResponse(Favorite entity) {
+		return new FavoriteDtoResponse(entity);
 	}
 
 	public static Favorite dtoToEntity(FavoriteDtoQuery dtoQuery) {

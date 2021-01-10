@@ -8,25 +8,39 @@ import dev.dto.right.RightDtoResponse;
 import dev.entity.Right;
 import dev.entity.Role;
 import dev.enumeration.RoleEnum;
+import dev.utils.transformer.RightTransformer;
 import dev.utils.transformer.SuperTransformer;
 
 public class RoleDtoResponse extends SuperDto {
 
 	private RoleEnum label;
-	private List<RightDtoResponse> rights = new ArrayList<RightDtoResponse>();
+	private List<RightDtoResponse> rights = new ArrayList<>();
 
 	// constructors
-	public RoleDtoResponse() {
-	}
-
-	public RoleDtoResponse(Role role) {
-		super();
-		this.label = role.getLabel();
-		for (Right r : role.getRights()) {
-			rights.add((RightDtoResponse)SuperTransformer.entityToDtoResponse(r));
+	public RoleDtoResponse(Role entity) {
+		this.id = entity.getId();
+		this.dateAdd = entity.getDateAdd();
+		this.label = entity.getLabel();
+		for (Right r : entity.getRights()) {
+			rights.add(RightTransformer.entityToDtoResponse(r));
 		}
+	}
+	// getteurSetteur
 
+	public RoleEnum getLabel() {
+		return label;
 	}
 
-	
+	public void setLabel(RoleEnum label) {
+		this.label = label;
+	}
+
+	public List<RightDtoResponse> getRights() {
+		return rights;
+	}
+
+	public void setRights(List<RightDtoResponse> rights) {
+		this.rights = rights;
+	}
+
 }

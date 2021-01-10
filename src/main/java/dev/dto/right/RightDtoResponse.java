@@ -8,14 +8,14 @@ public class RightDtoResponse extends SuperDto {
 
 	private RightEnum label;
 
-	public RightDtoResponse() {
-	}
-
+	// constructor
 	public RightDtoResponse(Right entity) {
-		super();
+		this.id = entity.getId();
+		this.dateAdd = entity.getDateAdd();
 		this.label = entity.getLabel();
 	}
 
+	// getteurSetteur
 	public RightEnum getLabel() {
 		return label;
 	}

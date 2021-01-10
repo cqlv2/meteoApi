@@ -1,10 +1,27 @@
 package dev.dto.member;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dev.dto.SuperDto;
+import dev.dto.answer.AnswerDtoResponse;
+import dev.dto.comment.CommentDtoResponse;
+import dev.dto.favorite.FavoriteDtoResponse;
 import dev.dto.role.RoleDtoResponse;
+import dev.dto.subject.SubjectDtoResponse;
+import dev.dto.topic.TopicDtoResponse;
+import dev.entity.Favorite;
+import dev.entity.ForumAnswer;
+import dev.entity.ForumComment;
+import dev.entity.ForumSubject;
+import dev.entity.ForumTopic;
 import dev.entity.Member;
-import dev.entity.Role;
-import dev.utils.transformer.SuperTransformer;
+import dev.utils.transformer.FavoriteTransformer;
+import dev.utils.transformer.ForumAnswerTransformer;
+import dev.utils.transformer.ForumCommentTransformer;
+import dev.utils.transformer.ForumSubjectTransformer;
+import dev.utils.transformer.ForumTopicTransformer;
+import dev.utils.transformer.RoleTransformer;
 
 /**
  * data transfer object between the persistence layer and the service layer.
@@ -15,33 +32,66 @@ import dev.utils.transformer.SuperTransformer;
  */
 public class MemberDtoResponse extends SuperDto {
 
-	private String username;
+	private String lastName;
+	private String firstName;
+	private String userName;
 	private String email;
-
 	private RoleDtoResponse role;
+	private List<FavoriteDtoResponse> favotires = new ArrayList<>();
+	private List<TopicDtoResponse> topics = new ArrayList<>();
+	private List<SubjectDtoResponse> subjects = new ArrayList<>();
+	private List<AnswerDtoResponse> answers = new ArrayList<>();
+	private List<CommentDtoResponse> comments = new ArrayList<>();
 
-	// constructeurs
-
-	public MemberDtoResponse() {
-
-	}
-
+	// Constructor
 	public MemberDtoResponse(Member entity) {
 		this.id = entity.getId();
-		this.username = entity.getUsername();
+		this.dateAdd=entity.getDateAdd();
+		this.lastName = entity.getLastName();
+		this.firstName = entity.getFirstName();
+		this.userName = entity.getUserName();
 		this.email = entity.getEmail();
-		this.role = (RoleDtoResponse) SuperTransformer.entityToDtoResponse(entity.getRole());
+		this.role = RoleTransformer.entityToDtoResponse(entity.getRole());
+		for (Favorite f : entity.getFavotires()) {
+			this.favotires.add(FavoriteTransformer.entityToDtoResponse(f));
+		}
+		for (ForumTopic t : entity.getTopics()) {
+			this.topics.add(ForumTopicTransformer.entityToDtoResponse(t));
+		}
+		for (ForumSubject s : entity.getSubjects()) {
+			this.subjects.add(ForumSubjectTransformer.entityToDtoResponse(s));
+		}
+		for (ForumAnswer a : entity.getAnswers()) {
+			this.answers.add(ForumAnswerTransformer.entityToDtoResponse(a));
+		}
+		for (ForumComment c : entity.getComments()) {
+			this.comments.add(ForumCommentTransformer.entityToDtoResponse(c));
+		}
+	}
+	// getteurSetteur
 
+	public String getLastName() {
+		return lastName;
 	}
 
-	// getteur setteur
-
-	public String getUsername() {
-		return username;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {
@@ -52,12 +102,52 @@ public class MemberDtoResponse extends SuperDto {
 		this.email = email;
 	}
 
-	public RoleDtoResponse getRoleId() {
+	public RoleDtoResponse getRole() {
 		return role;
 	}
 
-	public void setRoleId(RoleDtoResponse role) {
+	public void setRole(RoleDtoResponse role) {
 		this.role = role;
+	}
+
+	public List<FavoriteDtoResponse> getFavotires() {
+		return favotires;
+	}
+
+	public void setFavotires(List<FavoriteDtoResponse> favotires) {
+		this.favotires = favotires;
+	}
+
+	public List<TopicDtoResponse> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(List<TopicDtoResponse> topics) {
+		this.topics = topics;
+	}
+
+	public List<SubjectDtoResponse> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(List<SubjectDtoResponse> subjects) {
+		this.subjects = subjects;
+	}
+
+	public List<AnswerDtoResponse> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<AnswerDtoResponse> answers) {
+		this.answers = answers;
+	}
+
+	public List<CommentDtoResponse> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentDtoResponse> comments) {
+		this.comments = comments;
 	}
 
 }

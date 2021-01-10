@@ -7,16 +7,33 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import dev.dto.member.MemberDtoQuery;
+import dev.enumeration.RoleEnum;
+import dev.exceptions.repositoryException;
+import dev.repository.RoleService;
 import dev.service.CityService;
+import dev.service.MemberService;
 
 @Component
 public class StartupListener implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private CityService cityServ;
+	@Autowired
+	private MemberService memberserv;
+
 
 	@Override
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		System.out.println("initialization...");
+
+		
+		try {
+			memberserv.checkAdmin();
+		} catch (repositoryException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			
 
 		try {
 			cityServ.updateCityFromApi();

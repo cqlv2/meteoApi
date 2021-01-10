@@ -3,7 +3,7 @@ package dev.dto.favorite;
 import dev.dto.SuperDto;
 import dev.entity.Favorite;
 
-public class FavoriteDtoReponse extends SuperDto{
+public class FavoriteDtoResponse extends SuperDto{
 	
 	private Boolean showWeather;
 	private Boolean showPolluants;
@@ -11,7 +11,7 @@ public class FavoriteDtoReponse extends SuperDto{
 	private String infoWeather;
 
 	// constructeur
-	public FavoriteDtoReponse(Favorite entity) {
+	public FavoriteDtoResponse(Favorite entity) {
 		this.id = entity.getId();
 		this.dateAdd = entity.getDateAdd();
 		this.showWeather = entity.getShowWeather();
