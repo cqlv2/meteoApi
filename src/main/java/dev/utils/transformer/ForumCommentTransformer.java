@@ -1,7 +1,5 @@
 package dev.utils.transformer;
 
-import java.time.LocalDate;
-
 import dev.dto.comment.CommentDtoQuery;
 import dev.dto.comment.CommentDtoResponse;
 import dev.entity.ForumAbstractMessage;
@@ -19,7 +17,7 @@ public class ForumCommentTransformer {
 	public static ForumComment dtoToEntity(CommentDtoQuery dtoQuery) {
 		ForumComment fc = new ForumComment();
 		fc.setId(dtoQuery.getId()!=null?dtoQuery.getId():null);
-		fc.setDateAdd(dtoQuery.getDateAdd()!=null?dtoQuery.getDateAdd():LocalDate.now());
+		fc.setDateAdd(dtoQuery.getDateAdd());
 		fc.setContain(dtoQuery.getContain());
 		fc.setLiked(dtoQuery.getLiked());
 		//ajout du membre

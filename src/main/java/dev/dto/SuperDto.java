@@ -1,6 +1,7 @@
 package dev.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.MappedSuperclass;
 
@@ -8,7 +9,10 @@ import javax.persistence.MappedSuperclass;
 public abstract class SuperDto {
 
 	protected Long id;
-	protected LocalDate dateAdd;
+	protected LocalDateTime dateAdd = LocalDateTime.now();
+
+	// pas de constructeur car on veux pas de constructeur dans les dtoQuery!
+	// id et date add seron hydrater dans le constructeur de dtoResponse
 
 	public Long getId() {
 		return id;
@@ -18,11 +22,11 @@ public abstract class SuperDto {
 		this.id = id;
 	}
 
-	public LocalDate getDateAdd() {
+	public LocalDateTime getDateAdd() {
 		return dateAdd;
 	}
 
-	public void setDateAdd(LocalDate dateAdd) {
+	public void setDateAdd(LocalDateTime dateAdd) {
 		this.dateAdd = dateAdd;
 	}
 

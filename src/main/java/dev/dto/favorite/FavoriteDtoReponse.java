@@ -1,7 +1,5 @@
 package dev.dto.favorite;
 
-import java.util.List;
-
 import dev.dto.SuperDto;
 import dev.entity.Favorite;
 

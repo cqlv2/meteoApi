@@ -1,9 +1,5 @@
 package dev.utils.transformer;
 
-import java.time.LocalDate;
-
-import org.apache.tomcat.jni.Poll;
-
 import dev.dto.city.CityDtoQuery;
 import dev.dto.city.CityDtoResponse;
 import dev.entity.City;
@@ -19,7 +15,7 @@ public class CityTransformer {
 	public static City dtoToEntity(CityDtoQuery dtoQuery) {
 		City c = new City();
 		c.setId(dtoQuery.getId() != null ? dtoQuery.getId() : null);
-		c.setDateAdd(dtoQuery.getDateAdd()!=null?dtoQuery.getDateAdd():LocalDate.now());
+		c.setDateAdd(dtoQuery.getDateAdd());
 		c.setInseeCode(dtoQuery.getInseeCode());
 		c.setPopulation(dtoQuery.getPopulation());
 		c.setCityName(dtoQuery.getCityName());

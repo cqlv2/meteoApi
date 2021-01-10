@@ -25,8 +25,8 @@ public class CityDtoResponse extends SuperDto {
 
 	// constructeur
 	public CityDtoResponse(City entity) {
-		this.id = entity.getId();
-		this.dateAdd = entity.getDateAdd();
+		this.id=entity.getId();
+		this.dateAdd=entity.getDateAdd();
 		this.cityName = entity.getCityName();
 		this.inseeCode = entity.getInseeCode();
 		this.population = entity.getPopulation();

@@ -3,22 +3,30 @@ package dev.dto.answer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import dev.dto.SuperDto;
 
 //exemple de json 
 //	{
-//		"id":null,
-//		"contain":"bla bla bla",
-//		"liked":0,
-//		"subjectId":1,
-//		"commentsId":null
+//		"id":null,							: null to create / number to update
+//		"dataAdd":"2021-01-10 08:34:00"		:format iso null for now 
+//		"contain":"bla bla bla",			:string
+//		"liked":0,							:0 or null
+//		"subjectId":1,						:forumSubject id
+//		"commentsId":null					:array of forumComments id
 //	}
 
 public class AnswerDtoQuery extends SuperDto {
 
+	@NotNull
+	@NotEmpty
 	private String contain;
-	private Integer liked;
+	private Integer liked = 0;
+	@NotNull
 	private Long subjectId;
+	@NotNull
 	private Long memberId;
 	private List<Long> commentsId=new ArrayList<Long>();
 
