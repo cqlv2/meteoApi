@@ -89,7 +89,7 @@ public class WeatherService extends SuperService<Weather, WeatherRepository, Wea
 
 		Long stop = System.currentTimeMillis();
 		String time = new SimpleDateFormat("mm:ss:SSS").format(new Date(stop - start));
-		System.out.println("... weather database updating in " + time + "at"
+		System.out.println("... weather database updated in " + time + "at"
 				+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
 
 	}
