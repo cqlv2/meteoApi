@@ -1,6 +1,7 @@
 package dev.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import dev.entity.Member;
 import dev.enumeration.RoleEnum;
 import dev.exceptions.repositoryException;
 import dev.repository.MemberRepository;
+import dev.utils.transformer.MemberTransformer;
 
 @Service
 public class MemberService extends SuperService<Member, MemberRepository, MemberDtoResponse, MemberDtoQuery> {
@@ -40,6 +42,15 @@ public class MemberService extends SuperService<Member, MemberRepository, Member
 		}
 
 		
+	}
+
+	public MemberDtoResponse readByEmail(String email) throws repositoryException {
+		Optional<Member> opt = repository.findByEmail(email);
+		if(opt.isPresent()) {
+			return MemberTransformer.entityToDtoResponse(opt.get());
+		}else {
+			throw new repositoryException("email non trouvé");
+		}
 	}
 
 }

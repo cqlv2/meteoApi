@@ -28,7 +28,7 @@ public class PolluantService extends SuperService<Polluant, PolluantRepository, 
     @Autowired
     private CityService cityService;
 
-    @Scheduled(initialDelay = 3 * 1000, fixedDelay = 3600 * 1000)
+    @Scheduled(initialDelay = 300 * 1000, fixedDelay = 3600 * 1000)
     public void updateFromApi() throws JsonProcessingException {
 
         // mise en place du chrono pour mesurer la durée de la requete
