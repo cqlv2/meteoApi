@@ -1,6 +1,7 @@
 package dev.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,6 +18,9 @@ import dev.service.CityService;
 @RestController
 @RequestMapping("/api/city")
 public class CityCtrl extends SuperController<City, CityService> {
+
+	// methode a ajouter au super controlleur mais pour le moment probleme
+	// d'integration de dto !
 
 	/**
 	 * add a new entry to the database
@@ -39,9 +43,12 @@ public class CityCtrl extends SuperController<City, CityService> {
 	public ResponseEntity<?> edit(@RequestBody CityDtoQuery dtoQuery) {
 		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
 	}
-	
-	
-	
+
+	// methode specific
+	/**
+	 * manually updates the database. administrator required
+	 */
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	@GetMapping("/updatebdd")
 	public void updatebdd() {
 		try {
@@ -51,9 +58,10 @@ public class CityCtrl extends SuperController<City, CityService> {
 			e.printStackTrace();
 		}
 	}
+
 	
 	
 	
 	
-	
+
 }

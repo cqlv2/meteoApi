@@ -1,4 +1,4 @@
-package dev.repository;
+package dev.service;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ import dev.dto.role.RoleDtoResponse;
 import dev.entity.Role;
 import dev.enumeration.RoleEnum;
 import dev.exceptions.repositoryException;
-import dev.service.SuperService;
+import dev.repository.RoleRepository;
 
 @Service
 public class RoleService extends SuperService<Role, RoleRepository, RoleDtoResponse, RoleDtoQuery>{

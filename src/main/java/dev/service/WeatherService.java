@@ -33,47 +33,47 @@ public class WeatherService extends SuperService<Weather, WeatherRepository, Wea
 	CityService cityServ;
 
 	/**
-	 * method automatically call once per hour to update the weather data in the
-	 * database
+	 * method automatically call 5 minutes after starting the application then every
+	 * hour to update the weather data in the database
 	 * 
 	 * @throws JsonMappingException
 	 * @throws JsonProcessingException
 	 */
-	@Scheduled(initialDelay = 3 * 1000, fixedDelay = 3600 * 1000)
+	@Scheduled(initialDelay = 300 * 1000, fixedDelay = 3600 * 1000)
 	public void updateFromApi() throws JsonMappingException, JsonProcessingException {
-		//mise en place du chrono pour mesurer la durée de la requete
+		// mise en place du chrono pour mesurer la durée de la requete
 		Long start = System.currentTimeMillis();
 		System.out.println("Updating weather dataBase...");
 		String token = "f11b1f113049111b41343297805d6707";
 		String api = "https://api.openweathermap.org/data/2.5/weather?appid=" + token + "&units=metric&q=";
-		//chargement des objet de rest et de mapper json
+		// chargement des objet de rest et de mapper json
 		RestTemplate rt = new RestTemplate();
 		ObjectMapper mapper = new ObjectMapper();
 
-		//recuperation de toute les villes de la badabase
+		// recuperation de toute les villes de la badabase
 		List<CityDtoResponse> cityList = cityServ.getAll();
 
 		// pour chaque ville ...
 		for (CityDtoResponse city : cityList) {
-			//on essaye d'appeler l'api
+			// on essaye d'appeler l'api
 			HttpEntity<String> response = null;
 			try {
 				response = rt.getForEntity(api + city.getCityName(), String.class);
-			} catch (Exception e) { 
-				//TODO faire un logger !
+			} catch (Exception e) {
+				// TODO faire un logger !
 				// si l'appelle rate on affiche l'erreur et on continu
-				System.err.println("error on city : "+city.getCityName());
+				System.err.println("error on city : " + city.getCityName());
 				System.err.println(e.getMessage());
 				continue;
 			}
 
-			// on parse les donnée obtenu 
+			// on parse les donnée obtenu
 			JsonNode root = mapper.readTree(response.getBody());
 			JsonNode weather = root.path("weather");
 			JsonNode main = root.path("main");
 			JsonNode wind = root.path("wind");
 
-			//creation du DTO
+			// creation du DTO
 			WeatherDtoQuery wDtoQ = new WeatherDtoQuery();
 			wDtoQ.setHumidity(main.path("humidity").asDouble());
 			wDtoQ.setPressure(main.path("pressure").asDouble());
@@ -83,13 +83,14 @@ public class WeatherService extends SuperService<Weather, WeatherRepository, Wea
 			wDtoQ.setVilleId(city.getId());
 			wDtoQ.setWindDirection(wind.path("deg").asInt());
 			wDtoQ.setWindSpeed(wind.path("speed").asDouble());
-			//enregistrement des données
+			// enregistrement des données
 			this.addUpdate(wDtoQ);
 		}
 
 		Long stop = System.currentTimeMillis();
 		String time = new SimpleDateFormat("mm:ss:SSS").format(new Date(stop - start));
-		System.out.println("... weather database updating in " + time+"at"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+		System.out.println("... weather database updating in " + time + "at"
+				+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
 
 	}
 

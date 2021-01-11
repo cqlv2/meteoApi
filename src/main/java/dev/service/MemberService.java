@@ -11,7 +11,6 @@ import dev.entity.Member;
 import dev.enumeration.RoleEnum;
 import dev.exceptions.repositoryException;
 import dev.repository.MemberRepository;
-import dev.repository.RoleService;
 
 @Service
 public class MemberService extends SuperService<Member, MemberRepository, MemberDtoResponse, MemberDtoQuery> {
