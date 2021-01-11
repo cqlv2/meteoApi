@@ -11,7 +11,7 @@ public abstract class SuperDto {
 	protected Long id;
 	protected LocalDateTime dateAdd = LocalDateTime.now();
 
-	// pas de constructeur car on veux pas de constructeur dans les dtoQuery!
+	// pas de constructeur car on veut pas de constructeur dans les dtoQuery!
 	// id et date add seron hydrater dans le constructeur de dtoResponse
 
 	public Long getId() {

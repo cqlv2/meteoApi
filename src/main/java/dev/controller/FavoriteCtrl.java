@@ -13,7 +13,7 @@ import dev.service.FavoriteService;
 
 @RestController
 @RequestMapping("api/favorite")
-public class FavotiteCtrl extends SuperController<Favorite, FavoriteService>{
+public class FavoriteCtrl extends SuperController<Favorite, FavoriteService>{
 
 	
 	/**
