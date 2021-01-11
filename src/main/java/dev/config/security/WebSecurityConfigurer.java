@@ -29,10 +29,11 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 
-				.antMatchers("/api/login").permitAll()
-				.antMatchers("api/public/**").permitAll()
-				.antMatchers("/api/admin/**").hasRole("ADMIN")
-				.antMatchers("/api/encode").permitAll()
+//				.antMatchers("/api/login").permitAll()
+//				.antMatchers("/api/public/**").permitAll()
+//				.antMatchers("/api/admin/**").hasRole("ADMIN")
+//				.antMatchers("/api/encode").permitAll()
+				.antMatchers("/api/city/**").permitAll()
 				.antMatchers("/api/**").authenticated()
 				.and().addFilter(new JWTAuthorizationFilter(authenticationManager()))
 				.addFilterAfter(new JWTAuthenticationFilter(userDetailsService), BasicAuthenticationFilter.class)

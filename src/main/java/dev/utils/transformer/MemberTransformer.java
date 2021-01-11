@@ -37,7 +37,7 @@ public class MemberTransformer {
 		for (Long favId : dtoRequest.getFavotiresId()) {
 			Favorite f = new Favorite();
 			f.setId(favId);
-			m.getFavotires().add(f);
+			m.getFavorites().add(f);
 		}
 		// ajout des topics
 		for (Long topId : dtoRequest.getTopics()) {

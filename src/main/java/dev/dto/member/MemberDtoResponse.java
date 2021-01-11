@@ -52,7 +52,7 @@ public class MemberDtoResponse extends SuperDto {
 		this.userName = entity.getUserName();
 		this.email = entity.getEmail();
 		this.role = RoleTransformer.entityToDtoResponse(entity.getRole());
-		for (Favorite f : entity.getFavotires()) {
+		for (Favorite f : entity.getFavorites()) {
 			this.favotires.add(FavoriteTransformer.entityToDtoResponse(f));
 		}
 		for (ForumTopic t : entity.getTopics()) {

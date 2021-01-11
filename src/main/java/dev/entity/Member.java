@@ -20,7 +20,7 @@ public class Member extends SuperEntity {
 	@JoinColumn(name = "idRole")
 	private Role role;
 	@OneToMany(targetEntity = Favorite.class, mappedBy = "member")
-	private List<Favorite> favotires = new ArrayList<>();
+	private List<Favorite> favorites = new ArrayList<>();
 	@OneToMany(targetEntity = ForumTopic.class, mappedBy = "member")
 	private List<ForumTopic> topics = new ArrayList<>();
 	@OneToMany(targetEntity = ForumSubject.class, mappedBy = "member")
@@ -79,12 +79,12 @@ public class Member extends SuperEntity {
 		this.role = role;
 	}
 
-	public List<Favorite> getFavotires() {
-		return favotires;
+	public List<Favorite> getFavorites() {
+		return favorites;
 	}
 
-	public void setFavotires(List<Favorite> favotires) {
-		this.favotires = favotires;
+	public void setFavorites(List<Favorite> favorites) {
+		this.favorites = favorites;
 	}
 
 	public List<ForumTopic> getTopics() {

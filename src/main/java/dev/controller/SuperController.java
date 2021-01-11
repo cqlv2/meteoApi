@@ -3,6 +3,7 @@ package dev.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,6 +64,7 @@ public abstract class SuperController<T extends SuperEntity, S extends SuperServ
 	 *         repositoryException message
 	 */
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('DELETE')")
 	public ResponseEntity<?> remove(@PathVariable Long id) {
 		try {
 			service.delete(id);

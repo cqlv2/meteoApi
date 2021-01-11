@@ -1,6 +1,7 @@
 package dev.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import dev.entity.ForumAnswer;
 import dev.service.ForumAnswerService;
 
 @RestController
-@RequestMapping("/api/forum/answer")
+@RequestMapping("/forum")
 public class ForumAnswerCtrl extends SuperController<ForumAnswer,ForumAnswerService> {
 
 
@@ -35,9 +36,15 @@ public class ForumAnswerCtrl extends SuperController<ForumAnswer,ForumAnswerServ
 	 * @return a response entity(ok) with 1 value formatted in DTO
 	 */
 	@PutMapping
+	@RequestMapping("/answer")
+	// TODO : PreAuthorize("@SecurityMethodsService.isConnectedUser(#id, principal)")
 	public ResponseEntity<?> edit(@RequestBody AnswerDtoQuery dtoQuery) {
 		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
 	}
-	
-	
+
+	@Override
+	@RequestMapping("/public/answer")
+	public ResponseEntity<?> findAll() {
+		return super.findAll();
+	}
 }
