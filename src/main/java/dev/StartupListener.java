@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import dev.dto.member.MemberDtoQuery;
 import dev.enumeration.RoleEnum;
-import dev.exceptions.repositoryException;
+import dev.exceptions.RepositoryException;
 import dev.service.CityService;
 import dev.service.MemberService;
 import dev.service.RoleService;
@@ -29,7 +29,7 @@ public class StartupListener implements ApplicationListener<ContextRefreshedEven
 		
 		try {
 			memberserv.checkAdmin();
-		} catch (repositoryException e1) {
+		} catch (RepositoryException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}

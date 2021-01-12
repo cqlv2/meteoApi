@@ -1,5 +1,7 @@
 package dev.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.dto.SuperDto;
 import dev.entity.SuperEntity;
-import dev.exceptions.repositoryException;
+import dev.exceptions.RepositoryException;
 import dev.service.SuperService;
 
 /**
@@ -50,7 +52,7 @@ public abstract class SuperController<T extends SuperEntity, S extends SuperServ
 	public ResponseEntity<?> findById(@PathVariable Long id) {
 		try {
 			return ResponseEntity.ok().body(service.getById(id));
-		} catch (repositoryException e) {
+		} catch (RepositoryException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
@@ -68,7 +70,7 @@ public abstract class SuperController<T extends SuperEntity, S extends SuperServ
 		try {
 			service.delete(id);
 			return ResponseEntity.ok().body("OK");
-		} catch (repositoryException e) {
+		} catch (RepositoryException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}

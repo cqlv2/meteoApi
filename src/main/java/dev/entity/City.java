@@ -69,6 +69,14 @@ public class City extends SuperEntity {
 		this.department = department;
 	}
 
+	public Favorite getFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(Favorite favorite) {
+		this.favorite = favorite;
+	}
+
 	public List<Weather> getWeathers() {
 		return weathers;
 	}

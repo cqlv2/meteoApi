@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import dev.dto.SuperDto;
 import dev.entity.SuperEntity;
-import dev.exceptions.repositoryException;
+import dev.exceptions.RepositoryException;
 import dev.utils.transformer.SuperTransformer;
 
 /**
@@ -49,14 +49,14 @@ public abstract class SuperService<T extends SuperEntity, R extends JpaRepositor
 	 * 
 	 * @param id id to search
 	 * @return a value corresponding to the id formatted in DTO
-	 * @throws repositoryException exception thrown if id is not found
+	 * @throws RepositoryException exception thrown if id is not found
 	 */
-	public DtoRep getById(Long id) throws repositoryException {
+	public DtoRep getById(Long id) throws RepositoryException {
 		Optional<T> opt = repository.findById(id);
 		if (opt.isPresent())
 			return (DtoRep) SuperTransformer.entityToDtoResponse(opt.get());
 		else
-			throw new repositoryException("id non trouvée");
+			throw new RepositoryException("id non trouvée");
 	}
 
 	/**
@@ -72,12 +72,12 @@ public abstract class SuperService<T extends SuperEntity, R extends JpaRepositor
 	/**
 	 * removes an entry from the database from an id or throws an exception if the id does not exist
 	 * @param id id to remove
-	 * @throws repositoryException throws if the id does not exist
+	 * @throws RepositoryException throws if the id does not exist
 	 */
-	public void delete(Long id) throws repositoryException {
+	public void delete(Long id) throws RepositoryException {
 		Optional<T> opt=repository.findById(id);
 		if(opt.isPresent()) repository.delete(opt.get());
-		else throw new repositoryException("id introuvable");
+		else throw new RepositoryException("id introuvable");
 		
 	}
 

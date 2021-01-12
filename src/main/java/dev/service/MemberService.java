@@ -10,7 +10,7 @@ import dev.dto.member.MemberDtoQuery;
 import dev.dto.member.MemberDtoResponse;
 import dev.entity.Member;
 import dev.enumeration.RoleEnum;
-import dev.exceptions.repositoryException;
+import dev.exceptions.RepositoryException;
 import dev.repository.MemberRepository;
 import dev.utils.transformer.MemberTransformer;
 
@@ -23,9 +23,9 @@ public class MemberService extends SuperService<Member, MemberRepository, Member
 	/**
 	 * checked if an admin is present in the database and created it if necessary
 	 * 
-	 * @throws repositoryException
+	 * @throws RepositoryException
 	 */
-	public void checkAdmin() throws repositoryException {
+	public void checkAdmin() throws RepositoryException {
 		List<Member> admins = repository.isThereRole(RoleEnum.ADMIN);
 		if (admins.size() == 0) {
 			System.out.println("no admin find... creating admin...");
@@ -44,12 +44,12 @@ public class MemberService extends SuperService<Member, MemberRepository, Member
 		
 	}
 
-	public MemberDtoResponse readByEmail(String email) throws repositoryException {
+	public MemberDtoResponse readByEmail(String email) throws RepositoryException {
 		Optional<Member> opt = repository.findByEmail(email);
 		if(opt.isPresent()) {
 			return MemberTransformer.entityToDtoResponse(opt.get());
 		}else {
-			throw new repositoryException("email non trouvé");
+			throw new RepositoryException("email non trouvé");
 		}
 	}
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.config.security.SecurityMethodsService;
 import dev.dto.member.MemberDtoQuery;
 import dev.entity.Member;
-import dev.exceptions.repositoryException;
+import dev.exceptions.RepositoryException;
 import dev.service.MemberService;
 
 @RestController
@@ -29,7 +29,7 @@ public class MemberCtrl extends SuperController<Member, MemberService> {
 	public ResponseEntity<?> showConnectedUser(Principal principal) {
 		try {
 			return ResponseEntity.ok().body(service.readByEmail(principal.getName()));
-		} catch (repositoryException e) {
+		} catch (RepositoryException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
