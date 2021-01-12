@@ -28,20 +28,28 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
+		.antMatchers("/api/login").permitAll()
+		.antMatchers("/api/public/**").permitAll()
+		.antMatchers("/forum/public/**").permitAll()
+		
+		.antMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+		.antMatchers("/forum/admin/**").hasAuthority("ROLE_ADMIN")
+		
+		.antMatchers("/api/**").authenticated()
 
-//				.antMatchers("/api/login").permitAll()
-//				.antMatchers("/api/public/**").permitAll()
-//				.antMatchers("/api/admin/**").hasRole("ADMIN")
-//				.antMatchers("/api/encode").permitAll()
-				.antMatchers("/api/city/**").permitAll()
-				.antMatchers("/api/**").authenticated()
-				.and().addFilter(new JWTAuthorizationFilter(authenticationManager()))
-				.addFilterAfter(new JWTAuthenticationFilter(userDetailsService), BasicAuthenticationFilter.class)
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().httpBasic().and()
-				.csrf().disable();
+
+
+		
+		.and()
+		.addFilter(new JWTAuthorizationFilter(authenticationManager()))
+		.addFilterAfter(new JWTAuthenticationFilter(userDetailsService), BasicAuthenticationFilter.class)
+		.sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and().httpBasic()
+		.and()
+		.csrf().disable();
 	}
 
-	// 1
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);

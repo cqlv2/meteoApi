@@ -64,7 +64,6 @@ public abstract class SuperController<T extends SuperEntity, S extends SuperServ
 	 *         repositoryException message
 	 */
 	@DeleteMapping("/{id}")
-	@PreAuthorize("hasAuthority('DELETE')")
 	public ResponseEntity<?> remove(@PathVariable Long id) {
 		try {
 			service.delete(id);

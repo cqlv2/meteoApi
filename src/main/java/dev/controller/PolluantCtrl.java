@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/polluant")
+@RequestMapping("api/Admin/polluant")
 public class PolluantCtrl extends SuperController<Polluant, PolluantService>{
 
     /**

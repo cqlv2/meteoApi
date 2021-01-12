@@ -16,6 +16,10 @@ public class SecurityMethodsService {
 	private MemberRepository memberRepository;
 	
 	public boolean isConnectedUser(Long memberId, UserDetails connectedUser) {
+		System.err.println(memberId);
+		System.err.println(connectedUser);
+		
+		
 		Member member = memberRepository.findById(memberId).orElse(null);
 		return member != null && member.getEmail().equals(connectedUser.getUsername());
 	}

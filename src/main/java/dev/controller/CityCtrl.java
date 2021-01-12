@@ -2,7 +2,9 @@ package dev.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,34 +18,35 @@ import dev.entity.City;
 import dev.service.CityService;
 
 @RestController
-@RequestMapping("/api/city")
+@RequestMapping("/api/public/cities")
 public class CityCtrl extends SuperController<City, CityService> {
 
 	// methode a ajouter au super controlleur mais pour le moment probleme
 	// d'integration de dto !
 
 	/**
-	 * add a new entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
+	 * method override to prohibit use
 	 */
 	@PostMapping
 	public ResponseEntity<?> add(@RequestBody CityDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+		return ResponseEntity.badRequest().body("prohibited");
 	}
 
 	/**
-	 * edit an entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
+	 * method override to prohibit use
 	 */
 	@PutMapping
 	public ResponseEntity<?> edit(@RequestBody CityDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+		return ResponseEntity.badRequest().body("prohibited");
 	}
-
+	//override methodes
+	@Override
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> remove(@PathVariable Long id) {
+		return super.remove(id);
+	}
+	
 	// methode specific
 	/**
 	 * manually updates the database. administrator required
@@ -58,6 +61,8 @@ public class CityCtrl extends SuperController<City, CityService> {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 	
 	

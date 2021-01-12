@@ -3,8 +3,10 @@ package dev.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class City extends SuperEntity {
@@ -15,10 +17,15 @@ public class City extends SuperEntity {
 	private String state;
 	private String department;
 
-	@OneToMany(targetEntity = Weather.class, mappedBy = "city")
+	
+	@OneToOne( mappedBy = "city", cascade = CascadeType.REMOVE )
+    private Favorite favorite;
+	
+	
+	@OneToMany(targetEntity = Weather.class, mappedBy = "city", cascade = CascadeType.REMOVE)
 	private List<Weather> weathers = new ArrayList<>();
 
-	@OneToMany(targetEntity = Polluant.class, mappedBy = "city")
+	@OneToMany(targetEntity = Polluant.class, mappedBy = "city", cascade = CascadeType.REMOVE)
 	private List<Polluant> polluants = new ArrayList<>();
 	// getteur setteur
 

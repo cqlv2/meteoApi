@@ -14,7 +14,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>, JpaSpecif
 
 	Optional<Member> findByEmail(String email);
 	Optional<Member> findByUserName(String username);
-	
+	Optional<Member> findById(Long id);
 	
 	@Query("select m from Member m where m.role.label = ?1")
 	List<Member> isThereRole(RoleEnum role);

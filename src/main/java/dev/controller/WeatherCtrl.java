@@ -13,7 +13,7 @@ import dev.entity.Weather;
 import dev.service.WeatherService;
 
 @RestController
-@RequestMapping("/api/weather")
+@RequestMapping("/api/admin/weather")
 public class WeatherCtrl extends SuperController<Weather, WeatherService>{
 	
 	/**
