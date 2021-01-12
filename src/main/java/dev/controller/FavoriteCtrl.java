@@ -5,7 +5,9 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.dto.favorite.FavoriteDtoQuery;
+import dev.dto.favorite.FavoriteDtoResponse;
 import dev.dto.member.MemberDtoResponse;
 import dev.entity.Favorite;
 import dev.exceptions.RepositoryException;
@@ -21,18 +24,17 @@ import dev.service.MemberService;
 
 @RestController
 @RequestMapping("api/favorite")
-public class FavoriteCtrl extends SuperController<Favorite, FavoriteService>{
-	
-	
+public class FavoriteCtrl extends SuperController<Favorite, FavoriteService> {
+
 	@PreAuthorize("@SecurityMethodsService.test(principal)")
 	@GetMapping("/toto")
 	public void toto() {
-		
+
 	}
-	
+
 	@Autowired
 	private MemberService memberServ;
-	
+
 	@Override
 	public ResponseEntity<?> findAll() {
 		return ResponseEntity.badRequest().body("prohibited");
@@ -44,9 +46,27 @@ public class FavoriteCtrl extends SuperController<Favorite, FavoriteService>{
 	}
 
 	@Override
-	@PreAuthorize("@SecurityMethodsService.canRemoveFavorite(#id, principal)")
+	@DeleteMapping("old/{id}")
 	public ResponseEntity<?> remove(Long id) {
-		return super.remove(id);
+		return ResponseEntity.badRequest().body("prohibited");
+	}
+
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> removeMyFav(@PathVariable Long id, Principal principal) {
+		MemberDtoResponse connectedMember = null;
+		try {
+			connectedMember = memberServ.readByEmail(principal.getName());
+			for (FavoriteDtoResponse fav : connectedMember.getFavotires()) {
+				if (fav.getId().equals(id)) {
+					service.delete(id);
+					return ResponseEntity.ok().body("OK");
+				}
+			}
+			return ResponseEntity.badRequest().body("not owner");
+		} catch (RepositoryException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 
 	/**
@@ -66,8 +86,7 @@ public class FavoriteCtrl extends SuperController<Favorite, FavoriteService>{
 	 * @param dtoQuery an instance of a dto Object parsed with jackson
 	 * @return a response entity(ok) with 1 value formatted in DTO
 	 */
-	
-	
+
 	@PutMapping
 	public ResponseEntity<?> edit(@RequestBody FavoriteDtoQuery dtoQuery, Principal principal) {
 		MemberDtoResponse connectedMember = null;
@@ -76,11 +95,11 @@ public class FavoriteCtrl extends SuperController<Favorite, FavoriteService>{
 		} catch (RepositoryException e) {
 			ResponseEntity.badRequest().body(e.getMessage());
 		}
-		if(dtoQuery.getMemberId().equals(connectedMember.getId())) {
+		if (dtoQuery.getMemberId().equals(connectedMember.getId())) {
 			return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-		}else {
+		} else {
 			return ResponseEntity.badRequest().body("not owner");
-		}	
+		}
 	}
-	
+
 }
