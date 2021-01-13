@@ -1,6 +1,7 @@
 package dev.config.security;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,17 +30,11 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 		.antMatchers("/api/login").permitAll()
-		.antMatchers("/api/public/**").permitAll()
-		.antMatchers("/forum/public/**").permitAll()
-		
+		.antMatchers(HttpMethod.GET, "/api/cities").permitAll()
+		.antMatchers(HttpMethod.GET, "/Forum/**").permitAll()
 		.antMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
 		.antMatchers("/forum/admin/**").hasAuthority("ROLE_ADMIN")
-		
 		.antMatchers("/api/**").authenticated()
-
-
-
-		
 		.and()
 		.addFilter(new JWTAuthorizationFilter(authenticationManager()))
 		.addFilterAfter(new JWTAuthenticationFilter(userDetailsService), BasicAuthenticationFilter.class)

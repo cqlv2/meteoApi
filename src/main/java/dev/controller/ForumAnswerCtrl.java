@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.dto.answer.AnswerDtoQuery;
+import dev.dto.answer.AnswerDtoResponse;
 import dev.dto.favorite.FavoriteDtoQuery;
 import dev.entity.ForumAnswer;
 import dev.service.ForumAnswerService;
 
 @RestController
 @RequestMapping("/forum")
-public class ForumAnswerCtrl extends SuperController<ForumAnswer,ForumAnswerService> {
+public class ForumAnswerCtrl extends SuperController<ForumAnswer,ForumAnswerService, AnswerDtoQuery, AnswerDtoResponse> {
 
 
 	/**

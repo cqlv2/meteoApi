@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import dev.dto.city.CityDtoQuery;
+import dev.dto.city.CityDtoResponse;
 import dev.entity.City;
 import dev.service.CityService;
 
 @RestController
-@RequestMapping("/api/public/cities")
-public class CityCtrl extends SuperController<City, CityService> {
+@RequestMapping("/api/cities")
+public class CityCtrl extends SuperController<City, CityService, CityDtoQuery, CityDtoResponse> {
 
 	// methode a ajouter au super controlleur mais pour le moment probleme
 	// d'integration de dto !

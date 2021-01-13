@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.dto.weather.WeatherDtoQuery;
+import dev.dto.weather.WeatherDtoResponse;
 import dev.entity.Weather;
 import dev.service.WeatherService;
 
 @RestController
 @RequestMapping("/api/admin/weather")
-public class WeatherCtrl extends SuperController<Weather, WeatherService>{
+public class WeatherCtrl extends SuperController<Weather, WeatherService, WeatherDtoQuery, WeatherDtoResponse>{
 	
 	/**
 	 * add a new entry to the database

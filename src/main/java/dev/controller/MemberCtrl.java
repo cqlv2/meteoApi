@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.config.security.SecurityMethodsService;
 import dev.dto.member.MemberDtoQuery;
+import dev.dto.member.MemberDtoResponse;
 import dev.entity.Member;
 import dev.exceptions.RepositoryException;
 import dev.service.MemberService;
 
 @RestController
 @RequestMapping("api/members")
-public class MemberCtrl extends SuperController<Member, MemberService> {
+public class MemberCtrl extends SuperController<Member, MemberService, MemberDtoQuery, MemberDtoResponse> {
 
 
 	@GetMapping("/me")
@@ -34,28 +35,28 @@ public class MemberCtrl extends SuperController<Member, MemberService> {
 		}
 	}
 
-	/**
-	 * public
-	 * 
-	 * add a new entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
-	 */
-	@PostMapping
-	public ResponseEntity<?> add(@RequestBody MemberDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-	}
-
-	/**
-	 * edit an entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
-	 */
-	@PutMapping
-	public ResponseEntity<?> edit(@RequestBody MemberDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-	}
+//	/**
+//	 * public
+//	 * 
+//	 * add a new entry to the database
+//	 * 
+//	 * @param dtoQuery an instance of a dto Object parsed with jackson
+//	 * @return a response entity(ok) with 1 value formatted in DTO
+//	 */
+//	@PostMapping
+//	public ResponseEntity<?> add(@RequestBody MemberDtoQuery dtoQuery) {
+//		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+//	}
+//
+//	/**
+//	 * edit an entry to the database
+//	 * 
+//	 * @param dtoQuery an instance of a dto Object parsed with jackson
+//	 * @return a response entity(ok) with 1 value formatted in DTO
+//	 */
+//	@PutMapping
+//	public ResponseEntity<?> edit(@RequestBody MemberDtoQuery dtoQuery) {
+//		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+//	}
 
 }

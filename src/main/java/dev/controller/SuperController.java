@@ -9,10 +9,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.dto.SuperDto;
+import dev.dto.member.MemberDtoQuery;
 import dev.entity.SuperEntity;
 import dev.exceptions.RepositoryException;
 import dev.service.SuperService;
@@ -27,7 +31,7 @@ import dev.service.SuperService;
  */
 @RestController
 @RequestMapping("")
-public abstract class SuperController<T extends SuperEntity, S extends SuperService<T, ? extends JpaRepository<T, Long>, ? extends SuperDto, ? extends SuperDto>> {
+public abstract class SuperController<T extends SuperEntity, S extends SuperService<T, ? extends JpaRepository<T, Long>, ? extends SuperDto, ? extends SuperDto>, DTOQ extends SuperDto, DTOR extends SuperDto> {
 
 	@Autowired
 	protected S service;
@@ -55,6 +59,30 @@ public abstract class SuperController<T extends SuperEntity, S extends SuperServ
 		} catch (RepositoryException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
+	}
+
+	/**
+	 * public
+	 * 
+	 * add a new entry to the database
+	 * 
+	 * @param dtoQuery an instance of a dto Object parsed with jackson
+	 * @return a response entity(ok) with 1 value formatted in DTO
+	 */
+	@PostMapping
+	public ResponseEntity<?> add(@RequestBody DTOQ dtoQuery) {
+		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+	}
+
+	/**
+	 * edit an entry to the database
+	 * 
+	 * @param dtoQuery an instance of a dto Object parsed with jackson
+	 * @return a response entity(ok) with 1 value formatted in DTO
+	 */
+	@PutMapping("{id}")
+	public ResponseEntity<?> edit(@PathVariable Long id, @RequestBody DTOQ dtoQuery) {
+		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
 	}
 
 	/**

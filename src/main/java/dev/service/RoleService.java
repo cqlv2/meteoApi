@@ -2,6 +2,8 @@ package dev.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import dev.dto.role.RoleDtoQuery;
@@ -12,6 +14,7 @@ import dev.exceptions.RepositoryException;
 import dev.repository.RoleRepository;
 
 @Service
+@Transactional
 public class RoleService extends SuperService<Role, RoleRepository, RoleDtoResponse, RoleDtoQuery>{
 
 	

@@ -10,42 +10,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.dto.topic.TopicDtoQuery;
+import dev.dto.topic.TopicDtoResponse;
 import dev.entity.ForumTopic;
 import dev.service.ForumTopicService;
 @RestController
-@RequestMapping("/forum/public/topic")
-public class ForumTopicCtrl extends SuperController<ForumTopic,ForumTopicService>{
+@RequestMapping("/forum/topic")
+public class ForumTopicCtrl extends SuperController<ForumTopic,ForumTopicService,TopicDtoQuery, TopicDtoResponse>{
 
-	/**
-	 * add a new entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
-	 */
-	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-	@PostMapping
-	public ResponseEntity<?> add(@RequestBody TopicDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-	}
-
-	/**
-	 * edit an entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
-	 */
-	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-	@PutMapping
-	public ResponseEntity<?> edit(@RequestBody TopicDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+	@Override
+	@PreAuthorize("hasAutority('ROLE_ADMIN')")
+	public ResponseEntity<?> add(TopicDtoQuery dtoQuery) {
+		// TODO Auto-generated method stub
+		return super.add(dtoQuery);
 	}
 
 	@Override
-	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	@PreAuthorize("hasAutority('ROLE_ADMIN')")
+	public ResponseEntity<?> edit(@PathVariable Long id, TopicDtoQuery dtoQuery) {
+		return super.edit(id, dtoQuery);
+	}
+
+	@Override
+	@PreAuthorize("hasAutority('ROLE_ADMIN')")
 	public ResponseEntity<?> remove(@PathVariable Long id) {
-		// TODO Auto-generated method stub
 		return super.remove(id);
 	}
-	
+
 	
 }
