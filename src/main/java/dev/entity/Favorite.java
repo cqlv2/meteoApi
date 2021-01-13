@@ -2,18 +2,28 @@ package dev.entity;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import dev.enumeration.PolluantEnum;
+import dev.enumeration.WeatherEnum;
 
 @Entity
 public class Favorite extends SuperEntity {
 
 	private Boolean showWeather;
 	private Boolean showPolluants;
-	private String polluant;
-	private String infoWeather;
+	@Enumerated(EnumType.STRING)
+	@ElementCollection
+	private List<PolluantEnum> polluants;
+	@Enumerated(EnumType.STRING)
+	@ElementCollection
+	private List<WeatherEnum> infoWeather;
 	@ManyToOne
 	@JoinColumn(name = "member_id")
 	private Member member;
@@ -38,19 +48,19 @@ public class Favorite extends SuperEntity {
 		this.showPolluants = showPolluants;
 	}
 
-	public String getPolluant() {
-		return polluant;
+	public List<PolluantEnum> getPolluants() {
+		return polluants;
 	}
 
-	public void setPolluant(String polluant) {
-		this.polluant = polluant;
+	public void setPolluants(List<PolluantEnum> polluants) {
+		this.polluants = polluants;
 	}
 
-	public String getInfoWeather() {
+	public List<WeatherEnum> getInfoWeather() {
 		return infoWeather;
 	}
 
-	public void setInfoWeather(String infoWeather) {
+	public void setInfoWeather(List<WeatherEnum> infoWeather) {
 		this.infoWeather = infoWeather;
 	}
 

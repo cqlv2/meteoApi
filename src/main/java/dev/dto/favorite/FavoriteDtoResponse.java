@@ -1,14 +1,21 @@
 package dev.dto.favorite;
 
+import java.util.List;
+
 import dev.dto.SuperDto;
+import dev.dto.city.CityDtoResponse;
 import dev.entity.Favorite;
+import dev.enumeration.PolluantEnum;
+import dev.enumeration.WeatherEnum;
+import dev.utils.transformer.CityTransformer;
 
 public class FavoriteDtoResponse extends SuperDto{
 	
 	private Boolean showWeather;
 	private Boolean showPolluants;
-	private String polluant;
-	private String infoWeather;
+	private List<PolluantEnum> polluants;
+	private List<WeatherEnum> infoWeather;
+	private CityDtoResponse cityDtoResponse;
 
 	// constructeur
 	public FavoriteDtoResponse(Favorite entity) {
@@ -16,8 +23,9 @@ public class FavoriteDtoResponse extends SuperDto{
 		this.dateAdd = entity.getDateAdd();
 		this.showWeather = entity.getShowWeather();
 		this.showPolluants = entity.getShowPolluants();
-		this.polluant = entity.getPolluant();
+		this.polluants = entity.getPolluants();
 		this.infoWeather = entity.getInfoWeather();
+		this.cityDtoResponse = CityTransformer.entityToDtoResponse(entity.getCity());
 	}
 
 	// getteur/setteur
@@ -38,20 +46,28 @@ public class FavoriteDtoResponse extends SuperDto{
 		this.showPolluants = showPolluants;
 	}
 
-	public String getPolluant() {
-		return polluant;
+	public List<PolluantEnum> getPolluants() {
+		return polluants;
 	}
 
-	public void setPolluant(String polluant) {
-		this.polluant = polluant;
+	public void setPolluants(List<PolluantEnum> polluant) {
+		this.polluants = polluant;
 	}
 
-	public String getInfoWeather() {
+	public List<WeatherEnum> getInfoWeather() {
 		return infoWeather;
 	}
 
-	public void setInfoWeather(String infoWeather) {
+	public void setInfoWeather(List<WeatherEnum> infoWeather) {
 		this.infoWeather = infoWeather;
+	}
+
+	public CityDtoResponse getCityDtoResponse() {
+		return cityDtoResponse;
+	}
+
+	public void setCityDtoResponse(CityDtoResponse cityDtoResponse) {
+		this.cityDtoResponse = cityDtoResponse;
 	}
 
 }

@@ -36,10 +36,8 @@ public class SecurityMethodsService {
 	FavoriteRepository favoriteRepository;
 	
 	private Long getConnectedUserId() {
-		System.err.println("azeuser");
 		String userName = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Member m = memberRepository.findByEmail(userName).orElse(null);
-		System.err.println("azeuser2");
 		return m.getId();
 	}
 	
@@ -47,7 +45,6 @@ public class SecurityMethodsService {
 	
 	public boolean isMySubject(Long id) {
 		ForumSubject fs =  subjectRepository.findById(id).orElse(null);
-		System.err.println("aze");
 		return fs.getMember().getId()==this.getConnectedUserId();
 		
 	}

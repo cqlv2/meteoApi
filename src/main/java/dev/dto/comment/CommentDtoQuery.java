@@ -58,7 +58,7 @@ public class CommentDtoQuery extends SuperDto {
 	}
 
 	public void setMemberId(Long memberId) {
-		memberId = memberId;
+		this.memberId = memberId;
 	}
 	
 }

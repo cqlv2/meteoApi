@@ -17,7 +17,7 @@ public class FavoriteTransformer {
 		f.setId(dtoQuery.getId() != null ? dtoQuery.getId() : null);
 		f.setDateAdd(dtoQuery.getDateAdd());
 		f.setInfoWeather(dtoQuery.getInfoWeather());
-		f.setPolluant(dtoQuery.getPolluant());
+		f.setPolluants(dtoQuery.getPolluants());
 		f.setShowPolluants(dtoQuery.getShowPolluants());
 		f.setShowWeather(dtoQuery.getShowWeather());
 

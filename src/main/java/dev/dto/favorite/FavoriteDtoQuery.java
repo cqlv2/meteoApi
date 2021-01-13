@@ -5,9 +5,12 @@ import java.util.List;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import dev.dto.SuperDto;
 import dev.entity.Member;
+import dev.enumeration.PolluantEnum;
+import dev.enumeration.WeatherEnum;
 import dev.entity.City;
 //exemple de json
 //		{
@@ -21,11 +24,14 @@ import dev.entity.City;
 
 public class FavoriteDtoQuery extends SuperDto {
 
-	private Boolean showWeather;
-	private Boolean showPolluants;
-	private String polluant;
-	private String infoWeather;
+
+	private Boolean showWeather = true;
+	private Boolean showPolluants = true;
+	private List<PolluantEnum> polluants;
+	private List<WeatherEnum> infoWeather;
+	@NotNull
 	private Long memberId;
+	@NotNull
 	private Long villeId;
 
 	// getteur/setteur
@@ -46,19 +52,19 @@ public class FavoriteDtoQuery extends SuperDto {
 		this.showPolluants = showPolluants;
 	}
 
-	public String getPolluant() {
-		return polluant;
+	public List<PolluantEnum> getPolluants() {
+		return polluants;
 	}
 
-	public void setPolluant(String polluant) {
-		this.polluant = polluant;
+	public void setPolluants(List<PolluantEnum> polluants) {
+		this.polluants = polluants;
 	}
 
-	public String getInfoWeather() {
+	public List<WeatherEnum> getInfoWeather() {
 		return infoWeather;
 	}
 
-	public void setInfoWeather(String infoWeather) {
+	public void setInfoWeather(List<WeatherEnum> infoWeather) {
 		this.infoWeather = infoWeather;
 	}
 

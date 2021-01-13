@@ -39,7 +39,9 @@ public class FavoriteCtrl extends SuperController<Favorite, FavoriteService, Fav
 	@Override
 	@PreAuthorize("@securityMethodsService.isMyFavorite(#id)")
 	public ResponseEntity<?> remove(@PathVariable Long id) {
-		return ResponseEntity.badRequest().body("prohibited");
+		return super.remove(id);
 	}
+
+
 
 }
