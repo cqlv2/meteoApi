@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-@DiscriminatorValue("MESSAGE")
+@DiscriminatorValue("ANSWER")
 public class ForumAnswer extends ForumAbstractMessage {
 
 	// une reponse appartient à un sujet

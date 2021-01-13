@@ -36,7 +36,7 @@ public class MemberDtoQuery extends SuperDto {
 	private String email;
 	private String password;
 	private Long roleId;
-	private List<Long> favotiresId = new ArrayList<>();
+	private List<Long> favoritesId = new ArrayList<>();
 	private List<Long> topics = new ArrayList<>();
 	private List<Long> subjects = new ArrayList<>();
 	private List<Long> answers = new ArrayList<>();
@@ -91,12 +91,12 @@ public class MemberDtoQuery extends SuperDto {
 		this.roleId = roleId;
 	}
 
-	public List<Long> getFavotiresId() {
-		return favotiresId;
+	public List<Long> getFavoritesId() {
+		return favoritesId;
 	}
 
-	public void setFavotiresId(List<Long> favotiresId) {
-		this.favotiresId = favotiresId;
+	public void setFavoritesId(List<Long> favotiresId) {
+		this.favoritesId = favotiresId;
 	}
 
 	public List<Long> getTopics() {

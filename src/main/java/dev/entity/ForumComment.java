@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-@DiscriminatorValue("REPONSE")
+@DiscriminatorValue("COMMENT")
 public class ForumComment extends ForumAbstractMessage {
 
 	// une réponse appartient à un ForumAbstractMessage

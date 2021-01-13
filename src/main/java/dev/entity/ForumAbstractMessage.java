@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
-@Table(name = "Message")
+@Table(name = "forum_message")
 public class ForumAbstractMessage extends SuperEntity {
 
 	protected String contain;

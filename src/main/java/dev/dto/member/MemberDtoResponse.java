@@ -37,7 +37,7 @@ public class MemberDtoResponse extends SuperDto {
 	private String userName;
 	private String email;
 	private RoleDtoResponse role;
-	private List<FavoriteDtoResponse> favotires = new ArrayList<>();
+	private List<FavoriteDtoResponse> favorites = new ArrayList<>();
 	private List<TopicDtoResponse> topics = new ArrayList<>();
 	private List<SubjectDtoResponse> subjects = new ArrayList<>();
 	private List<AnswerDtoResponse> answers = new ArrayList<>();
@@ -53,7 +53,7 @@ public class MemberDtoResponse extends SuperDto {
 		this.email = entity.getEmail();
 		this.role = RoleTransformer.entityToDtoResponse(entity.getRole());
 		for (Favorite f : entity.getFavorites()) {
-			this.favotires.add(FavoriteTransformer.entityToDtoResponse(f));
+			this.favorites.add(FavoriteTransformer.entityToDtoResponse(f));
 		}
 		for (ForumTopic t : entity.getTopics()) {
 			this.topics.add(ForumTopicTransformer.entityToDtoResponse(t));
@@ -110,12 +110,12 @@ public class MemberDtoResponse extends SuperDto {
 		this.role = role;
 	}
 
-	public List<FavoriteDtoResponse> getFavotires() {
-		return favotires;
+	public List<FavoriteDtoResponse> getFavorites() {
+		return favorites;
 	}
 
-	public void setFavotires(List<FavoriteDtoResponse> favotires) {
-		this.favotires = favotires;
+	public void setFavorites(List<FavoriteDtoResponse> favorites) {
+		this.favorites = favorites;
 	}
 
 	public List<TopicDtoResponse> getTopics() {

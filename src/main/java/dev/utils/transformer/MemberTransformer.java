@@ -34,7 +34,7 @@ public class MemberTransformer {
 		r.setId(dtoRequest.getRoleId());
 		m.setRole(r);
 		// ajout des favories
-		for (Long favId : dtoRequest.getFavotiresId()) {
+		for (Long favId : dtoRequest.getFavoritesId()) {
 			Favorite f = new Favorite();
 			f.setId(favId);
 			m.getFavorites().add(f);

@@ -1,7 +1,10 @@
 package dev.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,18 +31,21 @@ public class CityCtrl extends SuperController<City, CityService, CityDtoQuery, C
 	/**
 	 * method override to prohibit use
 	 */
+	@Override
 	@PostMapping
-	public ResponseEntity<?> add(@RequestBody CityDtoQuery dtoQuery) {
+	public ResponseEntity<?> add(@Valid @RequestBody CityDtoQuery dtoQuery, BindingResult resValue) {
 		return ResponseEntity.badRequest().body("prohibited");
 	}
 
-	/**
-	 * method override to prohibit use
-	 */
-	@PutMapping
-	public ResponseEntity<?> edit(@RequestBody CityDtoQuery dtoQuery) {
+
+	
+	@Override
+	public ResponseEntity<?> edit(@PathVariable Long id, @Valid @RequestBody CityDtoQuery dtoQuery, BindingResult resValue) {
 		return ResponseEntity.badRequest().body("prohibited");
 	}
+
+
+
 	//override methodes
 	@Override
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")

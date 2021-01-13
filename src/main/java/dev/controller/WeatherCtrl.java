@@ -16,27 +16,6 @@ import dev.service.WeatherService;
 @RestController
 @RequestMapping("/api/admin/weather")
 public class WeatherCtrl extends SuperController<Weather, WeatherService, WeatherDtoQuery, WeatherDtoResponse>{
-	
-	/**
-	 * add a new entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
-	 */
-	@PostMapping
-	public ResponseEntity<?> add(@RequestBody WeatherDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-	}
 
-	/**
-	 * edit an entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
-	 */
-	@PutMapping
-	public ResponseEntity<?> edit(@RequestBody WeatherDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-	}
 
 }

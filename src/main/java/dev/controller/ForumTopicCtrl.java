@@ -1,7 +1,10 @@
 package dev.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,20 +21,20 @@ import dev.service.ForumTopicService;
 public class ForumTopicCtrl extends SuperController<ForumTopic,ForumTopicService,TopicDtoQuery, TopicDtoResponse>{
 
 	@Override
-	@PreAuthorize("hasAutority('ROLE_ADMIN')")
-	public ResponseEntity<?> add(TopicDtoQuery dtoQuery) {
-		// TODO Auto-generated method stub
-		return super.add(dtoQuery);
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	public ResponseEntity<?> add(@Valid @RequestBody TopicDtoQuery dtoQuery, BindingResult resValue) {
+		return super.add(dtoQuery, resValue);
 	}
 
 	@Override
-	@PreAuthorize("hasAutority('ROLE_ADMIN')")
-	public ResponseEntity<?> edit(@PathVariable Long id, TopicDtoQuery dtoQuery) {
-		return super.edit(id, dtoQuery);
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	public ResponseEntity<?> edit(@PathVariable Long id, @Valid @RequestBody TopicDtoQuery dtoQuery, BindingResult resValue) {
+		System.err.println(id + " " + dtoQuery.toString());
+		return super.edit(id, dtoQuery, resValue);
 	}
 
 	@Override
-	@PreAuthorize("hasAutority('ROLE_ADMIN')")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public ResponseEntity<?> remove(@PathVariable Long id) {
 		return super.remove(id);
 	}

@@ -3,14 +3,20 @@ package dev.dto.comment;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import dev.dto.SuperDto;
 
 public class CommentDtoQuery extends SuperDto {
 
+	@NotNull
+	@NotBlank
 	private String contain;
-	private Integer liked;
+	private Integer liked = 0;
 	private Long originId;
 	private List<Long> commentsId = new ArrayList<>();
+	@NotNull
 	private Long MemberId;
 
 	// getteurSetteur

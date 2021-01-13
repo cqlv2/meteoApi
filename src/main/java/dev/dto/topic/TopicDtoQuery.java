@@ -3,13 +3,23 @@ package dev.dto.topic;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import dev.dto.SuperDto;
 
 public class TopicDtoQuery extends SuperDto{
+	
+//	{
+//        "label": "test",
+//        "memberId": 1
+//	}
 
-
+	@NotNull
+	@NotBlank
 	private String label;
 	private List<Long> subjectsId = new ArrayList<>();
+	@NotNull
 	private Long memberId;
 	//getteurSetteur
 	public String getLabel() {
@@ -29,6 +39,10 @@ public class TopicDtoQuery extends SuperDto{
 	}
 	public void setMemberId(Long memberId) {
 		this.memberId = memberId;
+	}
+	@Override
+	public String toString() {
+		return "TopicDtoQuery [label=" + label + ", subjectsId=" + subjectsId + ", memberId=" + memberId + "]";
 	}
 	
 	

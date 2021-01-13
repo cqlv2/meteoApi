@@ -3,13 +3,26 @@ package dev.dto.subject;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import dev.dto.SuperDto;
 
 public class SubjectDtoQuery extends SuperDto {
+	
+//	{
+//        "label": "testSubject",
+//        "topicId": 1,
+//        "memberId": 1
+//	}
 
+	@NotNull
+	@NotBlank
 	private String label;
 	private List<Long> answersId = new ArrayList<>();
+	@NotNull
 	private Long topicId;
+	@NotNull
 	private Long memberId;
 
 	// getteurSetteur
@@ -44,5 +57,7 @@ public class SubjectDtoQuery extends SuperDto {
 	public void setMemberId(Long memberId) {
 		this.memberId = memberId;
 	}
+
+	
 
 }

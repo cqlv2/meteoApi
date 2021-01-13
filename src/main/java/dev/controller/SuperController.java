@@ -2,10 +2,13 @@ package dev.controller;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,8 +73,12 @@ public abstract class SuperController<T extends SuperEntity, S extends SuperServ
 	 * @return a response entity(ok) with 1 value formatted in DTO
 	 */
 	@PostMapping
-	public ResponseEntity<?> add(@RequestBody DTOQ dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+	public ResponseEntity<?> add(@Valid @RequestBody DTOQ dtoQuery, BindingResult resValue) {
+		if (!resValue.hasErrors()) {
+			return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+		} else {
+			return ResponseEntity.badRequest().body("incorrect JSON");
+		}
 	}
 
 	/**
@@ -81,8 +88,12 @@ public abstract class SuperController<T extends SuperEntity, S extends SuperServ
 	 * @return a response entity(ok) with 1 value formatted in DTO
 	 */
 	@PutMapping("{id}")
-	public ResponseEntity<?> edit(@PathVariable Long id, @RequestBody DTOQ dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+	public ResponseEntity<?> edit(@PathVariable Long id, @Valid @RequestBody DTOQ dtoQuery, BindingResult resValue) {
+		if (!resValue.hasErrors()) {
+			return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+		} else {
+			return ResponseEntity.badRequest().body("incorrect JSON");
+		}
 	}
 
 	/**

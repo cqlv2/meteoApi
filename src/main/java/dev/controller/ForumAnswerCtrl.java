@@ -2,6 +2,7 @@ package dev.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,32 +16,15 @@ import dev.entity.ForumAnswer;
 import dev.service.ForumAnswerService;
 
 @RestController
-@RequestMapping("/forum")
+@RequestMapping("/forum/answer")
 public class ForumAnswerCtrl extends SuperController<ForumAnswer,ForumAnswerService, AnswerDtoQuery, AnswerDtoResponse> {
 
 
-	/**
-	 * add a new entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
-	 */
-	@PostMapping
-	public ResponseEntity<?> add(@RequestBody AnswerDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-	}
-
-	/**
-	 * edit an entry to the database
-	 * 
-	 * @param dtoQuery an instance of a dto Object parsed with jackson
-	 * @return a response entity(ok) with 1 value formatted in DTO
-	 */
-	@PutMapping
-	@RequestMapping("/answer")
-	// TODO : PreAuthorize("@SecurityMethodsService.isConnectedUser(#id, principal)")
-	public ResponseEntity<?> edit(@RequestBody AnswerDtoQuery dtoQuery) {
-		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
+	@Override
+	@PreAuthorize("@securityMethodsService.isMySubject(#id)")
+	public ResponseEntity<?> remove(Long id) {
+		// TODO Auto-generated method stub
+		return super.remove(id);
 	}
 
 	@Override
