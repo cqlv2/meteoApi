@@ -19,12 +19,6 @@ import dev.service.ForumCommentService;
 @RequestMapping("/forum/comment")
 public class ForumCommentCtrl extends SuperController<ForumComment, ForumCommentService,CommentDtoQuery, CommentDtoResponse>{
 
-	
-	@Override
-	public ResponseEntity<?> add(@Valid CommentDtoQuery dtoQuery, BindingResult resValue) {
-		// TODO Auto-generated method stub
-		return super.add(dtoQuery, resValue);
-	}
 
 	@Override
 	@PreAuthorize("@securityMethodsService.isMyComment(#id) or hasAuthority('ROLE_ADMIN')")

@@ -14,10 +14,11 @@ public class CommentDtoQuery extends SuperDto {
 	@NotBlank
 	private String contain;
 	private Integer liked = 0;
+	@NotNull
 	private Long originId;
 	private List<Long> commentsId = new ArrayList<>();
 	@NotNull
-	private Long MemberId;
+	private Long memberId;
 
 	// getteurSetteur
 	public String getContain() {
@@ -53,11 +54,11 @@ public class CommentDtoQuery extends SuperDto {
 	}
 
 	public Long getMemberId() {
-		return MemberId;
+		return memberId;
 	}
 
 	public void setMemberId(Long memberId) {
-		MemberId = memberId;
+		memberId = memberId;
 	}
 	
 }

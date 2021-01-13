@@ -39,9 +39,9 @@ public class MemberDtoResponse extends SuperDto {
 	private RoleDtoResponse role;
 	private List<FavoriteDtoResponse> favorites = new ArrayList<>();
 	private List<TopicDtoResponse> topics = new ArrayList<>();
-	private List<SubjectDtoResponse> subjects = new ArrayList<>();
-	private List<AnswerDtoResponse> answers = new ArrayList<>();
-	private List<CommentDtoResponse> comments = new ArrayList<>();
+//	private List<SubjectDtoResponse> subjects = new ArrayList<>();
+//	private List<AnswerDtoResponse> answers = new ArrayList<>();
+//	private List<CommentDtoResponse> comments = new ArrayList<>();
 
 	// Constructor
 	public MemberDtoResponse(Member entity) {
@@ -58,15 +58,15 @@ public class MemberDtoResponse extends SuperDto {
 		for (ForumTopic t : entity.getTopics()) {
 			this.topics.add(ForumTopicTransformer.entityToDtoResponse(t));
 		}
-		for (ForumSubject s : entity.getSubjects()) {
-			this.subjects.add(ForumSubjectTransformer.entityToDtoResponse(s));
-		}
-		for (ForumAnswer a : entity.getAnswers()) {
-			this.answers.add(ForumAnswerTransformer.entityToDtoResponse(a));
-		}
-		for (ForumComment c : entity.getComments()) {
-			this.comments.add(ForumCommentTransformer.entityToDtoResponse(c));
-		}
+//		for (ForumSubject s : entity.getSubjects()) {
+//			this.subjects.add(ForumSubjectTransformer.entityToDtoResponse(s));
+//		}
+//		for (ForumAnswer a : entity.getAnswers()) {
+//			this.answers.add(ForumAnswerTransformer.entityToDtoResponse(a));
+//		}
+//		for (ForumComment c : entity.getComments()) {
+//			this.comments.add(ForumCommentTransformer.entityToDtoResponse(c));
+//		}
 	}
 	// getteurSetteur
 
@@ -126,28 +126,28 @@ public class MemberDtoResponse extends SuperDto {
 		this.topics = topics;
 	}
 
-	public List<SubjectDtoResponse> getSubjects() {
-		return subjects;
-	}
-
-	public void setSubjects(List<SubjectDtoResponse> subjects) {
-		this.subjects = subjects;
-	}
-
-	public List<AnswerDtoResponse> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(List<AnswerDtoResponse> answers) {
-		this.answers = answers;
-	}
-
-	public List<CommentDtoResponse> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentDtoResponse> comments) {
-		this.comments = comments;
-	}
+//	public List<SubjectDtoResponse> getSubjects() {
+//		return subjects;
+//	}
+//
+//	public void setSubjects(List<SubjectDtoResponse> subjects) {
+//		this.subjects = subjects;
+//	}
+//
+//	public List<AnswerDtoResponse> getAnswers() {
+//		return answers;
+//	}
+//
+//	public void setAnswers(List<AnswerDtoResponse> answers) {
+//		this.answers = answers;
+//	}
+//
+//	public List<CommentDtoResponse> getComments() {
+//		return comments;
+//	}
+//
+//	public void setComments(List<CommentDtoResponse> comments) {
+//		this.comments = comments;
+//	}
 
 }

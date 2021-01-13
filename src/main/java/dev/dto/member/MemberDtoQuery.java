@@ -38,9 +38,9 @@ public class MemberDtoQuery extends SuperDto {
 	private Long roleId;
 	private List<Long> favoritesId = new ArrayList<>();
 	private List<Long> topics = new ArrayList<>();
-	private List<Long> subjects = new ArrayList<>();
-	private List<Long> answers = new ArrayList<>();
-	private List<Long> comments = new ArrayList<>();
+//	private List<Long> subjects = new ArrayList<>();
+//	private List<Long> answers = new ArrayList<>();
+//	private List<Long> comments = new ArrayList<>();
 
 	//getteurSetteur
 	public String getLastName() {
@@ -107,28 +107,28 @@ public class MemberDtoQuery extends SuperDto {
 		this.topics = topics;
 	}
 
-	public List<Long> getSubjects() {
-		return subjects;
-	}
-
-	public void setSubjects(List<Long> subjects) {
-		this.subjects = subjects;
-	}
-
-	public List<Long> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(List<Long> answers) {
-		this.answers = answers;
-	}
-
-	public List<Long> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Long> comments) {
-		this.comments = comments;
-	}
+//	public List<Long> getSubjects() {
+//		return subjects;
+//	}
+//
+//	public void setSubjects(List<Long> subjects) {
+//		this.subjects = subjects;
+//	}
+//
+//	public List<Long> getAnswers() {
+//		return answers;
+//	}
+//
+//	public void setAnswers(List<Long> answers) {
+//		this.answers = answers;
+//	}
+//
+//	public List<Long> getComments() {
+//		return comments;
+//	}
+//
+//	public void setComments(List<Long> comments) {
+//		this.comments = comments;
+//	}
 
 }

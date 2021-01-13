@@ -23,12 +23,12 @@ public class Member extends SuperEntity {
 	private List<Favorite> favorites = new ArrayList<>();
 	@OneToMany(targetEntity = ForumTopic.class, mappedBy = "member")
 	private List<ForumTopic> topics = new ArrayList<>();
-	@OneToMany(targetEntity = ForumSubject.class, mappedBy = "member")
-	private List<ForumSubject> subjects = new ArrayList<>();
-	@OneToMany(targetEntity = ForumAnswer.class, mappedBy = "member")
-	private List<ForumAnswer> answers = new ArrayList<>();
-	@OneToMany(targetEntity = ForumComment.class, mappedBy = "member")
-	private List<ForumComment> comments = new ArrayList<>();
+//	@OneToMany(targetEntity = ForumSubject.class, mappedBy = "member")
+//	private List<ForumSubject> subjects = new ArrayList<>();
+//	@OneToMany(targetEntity = ForumAnswer.class, mappedBy = "member")
+//	private List<ForumAnswer> answers = new ArrayList<>();
+//	@OneToMany(targetEntity = ForumComment.class, mappedBy = "member")
+//	private List<ForumComment> comments = new ArrayList<>();
 
 //	getteurSetteur
 	public String getLastName() {
@@ -95,28 +95,28 @@ public class Member extends SuperEntity {
 		this.topics = topics;
 	}
 
-	public List<ForumSubject> getSubjects() {
-		return subjects;
-	}
-
-	public void setSubjects(List<ForumSubject> subjects) {
-		this.subjects = subjects;
-	}
-
-	public List<ForumAnswer> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(List<ForumAnswer> answers) {
-		this.answers = answers;
-	}
-
-	public List<ForumComment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<ForumComment> comments) {
-		this.comments = comments;
-	}
+//	public List<ForumSubject> getSubjects() {
+//		return subjects;
+//	}
+//
+//	public void setSubjects(List<ForumSubject> subjects) {
+//		this.subjects = subjects;
+//	}
+//
+//	public List<ForumAnswer> getAnswers() {
+//		return answers;
+//	}
+//
+//	public void setAnswers(List<ForumAnswer> answers) {
+//		this.answers = answers;
+//	}
+//
+//	public List<ForumComment> getComments() {
+//		return comments;
+//	}
+//
+//	public void setComments(List<ForumComment> comments) {
+//		this.comments = comments;
+//	}
 
 }

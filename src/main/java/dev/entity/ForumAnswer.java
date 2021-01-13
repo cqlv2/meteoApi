@@ -21,6 +21,7 @@ public class ForumAnswer extends ForumAbstractMessage {
 	// une reponse peut avoir de o a n commentaires
 	@OneToMany(targetEntity = ForumComment.class, mappedBy = "origin")
 	private List<ForumComment> comments=new ArrayList<>();
+	
 	// getteurSetteur
 
 	public ForumSubject getSubject() {

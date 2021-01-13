@@ -3,6 +3,7 @@ package dev.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,14 +23,9 @@ public class ForumAnswerCtrl extends SuperController<ForumAnswer,ForumAnswerServ
 
 	@Override
 	@PreAuthorize("@securityMethodsService.isMySubject(#id)")
-	public ResponseEntity<?> remove(Long id) {
+	public ResponseEntity<?> remove(@PathVariable Long id) {
 		// TODO Auto-generated method stub
 		return super.remove(id);
 	}
 
-	@Override
-	@RequestMapping("/public/answer")
-	public ResponseEntity<?> findAll() {
-		return super.findAll();
-	}
 }
