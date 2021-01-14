@@ -1,5 +1,8 @@
 package dev.config.security;
 
+import javax.annotation.security.PermitAll;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +22,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	private UserDetailsService userDetailsService;
 	private PasswordEncoder passwordEncoder;
+	private final static String TOKEN_COOKIE = "auth_cookie_cql";
+
 
 	public WebSecurityConfigurer(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
 		this.userDetailsService = userDetailsService;
@@ -27,23 +32,33 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-		http.authorizeRequests()
+		http
+		.csrf().disable()
+        .cors()
+        .and()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and()
+		.httpBasic()
+		.and()
+		.exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.setStatus(HttpServletResponse.SC_FORBIDDEN))
+		 .and()
+		.authorizeRequests()
 		.antMatchers("/api/login").permitAll()
 		.antMatchers(HttpMethod.GET, "/api/cities/**").permitAll()
 		.antMatchers(HttpMethod.GET, "/forum/**").permitAll()
+		.antMatchers(HttpMethod.POST, "/api/members").permitAll()
 		.antMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
 		.antMatchers("/forum/admin/**").hasAuthority("ROLE_ADMIN")
 		.antMatchers("/api/**").authenticated()
 		.antMatchers("/forum/**").authenticated()
 		.and()
 		.addFilter(new JWTAuthorizationFilter(authenticationManager()))
-		.addFilterAfter(new JWTAuthenticationFilter(userDetailsService), BasicAuthenticationFilter.class)
-		.sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().httpBasic()
-		.and()
-		.csrf().disable();
+		.addFilterBefore(new JWTAuthenticationFilter(userDetailsService), BasicAuthenticationFilter.class)
+		.logout()
+        .logoutSuccessHandler((req, resp, auth) -> resp.setStatus(HttpServletResponse.SC_OK))
+        .deleteCookies(TOKEN_COOKIE);
+		http.headers().frameOptions().sameOrigin();
 	}
 
 	@Override

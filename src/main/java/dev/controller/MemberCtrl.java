@@ -2,10 +2,13 @@ package dev.controller;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +28,6 @@ import dev.service.MemberService;
 @RequestMapping("api/members")
 public class MemberCtrl extends SuperController<Member, MemberService, MemberDtoQuery, MemberDtoResponse> {
 
-
 	@GetMapping("/me")
 	public ResponseEntity<?> showConnectedUser(Principal principal) {
 		try {
@@ -35,28 +37,34 @@ public class MemberCtrl extends SuperController<Member, MemberService, MemberDto
 		}
 	}
 
-//	/**
-//	 * public
-//	 * 
-//	 * add a new entry to the database
-//	 * 
-//	 * @param dtoQuery an instance of a dto Object parsed with jackson
-//	 * @return a response entity(ok) with 1 value formatted in DTO
-//	 */
-//	@PostMapping
-//	public ResponseEntity<?> add(@RequestBody MemberDtoQuery dtoQuery) {
-//		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-//	}
-//
-//	/**
-//	 * edit an entry to the database
-//	 * 
-//	 * @param dtoQuery an instance of a dto Object parsed with jackson
-//	 * @return a response entity(ok) with 1 value formatted in DTO
-//	 */
-//	@PutMapping
-//	public ResponseEntity<?> edit(@RequestBody MemberDtoQuery dtoQuery) {
-//		return ResponseEntity.ok().body(service.addUpdate(dtoQuery));
-//	}
+	@Override
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	public ResponseEntity<?> findAll() {
+		// TODO Auto-generated method stub
+		return super.findAll();
+	}
+
+	@Override
+	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
+	public ResponseEntity<?> findById(Long id) {
+		// TODO Auto-generated method stub
+		return super.findById(id);
+	}
+
+	@Override
+	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
+	public ResponseEntity<?> edit(Long id, @Valid MemberDtoQuery dtoQuery, BindingResult resValue) {
+		// TODO Auto-generated method stub
+		return super.edit(id, dtoQuery, resValue);
+	}
+
+	@Override
+	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
+	public ResponseEntity<?> remove(Long id) {
+		// TODO Auto-generated method stub
+		return super.remove(id);
+	}
+	
+	
 
 }

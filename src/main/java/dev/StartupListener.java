@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import dev.dto.member.MemberDtoQuery;
-import dev.enumeration.RoleEnum;
 import dev.exceptions.RepositoryException;
 import dev.service.CityService;
 import dev.service.MemberService;
@@ -20,12 +18,15 @@ public class StartupListener implements ApplicationListener<ContextRefreshedEven
 	private CityService cityServ;
 	@Autowired
 	private MemberService memberserv;
+	@Autowired
+	private RoleService roleServ;
+	
 
 
 	@Override
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		System.out.println("initialization...");
-
+		roleServ.CheckMinRole();
 		
 		try {
 			memberserv.checkAdmin();

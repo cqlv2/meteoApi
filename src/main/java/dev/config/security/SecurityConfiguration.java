@@ -12,7 +12,5 @@ public class SecurityConfiguration {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-		//pas d'encrype pour le debug
-		//return NoOpPasswordEncoder.getInstance();
 	}
 }

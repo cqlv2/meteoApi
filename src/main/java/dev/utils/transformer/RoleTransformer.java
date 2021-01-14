@@ -1,10 +1,7 @@
 package dev.utils.transformer;
 
-import dev.dto.member.MemberDtoQuery;
-import dev.dto.member.MemberDtoResponse;
 import dev.dto.role.RoleDtoQuery;
 import dev.dto.role.RoleDtoResponse;
-import dev.entity.Member;
 import dev.entity.Right;
 import dev.entity.Role;
 
@@ -21,12 +18,13 @@ public class RoleTransformer {
 		r.setLabel(dtoRequete.getLabel());
 		
 		// ajout des droits
-		for (Long id : dtoRequete.getRightsId()) {
-			Right ri = new Right();
-			ri.setId(id);
-			r.getRights().add(ri);
+		if(dtoRequete.getRightsId()!=null) {
+			for (Long roleId : dtoRequete.getRightsId()) {
+				Right right = new Right();
+				right.setId(roleId);
+				r.getRights().add(right);
+			}
 		}
-
 		return r;
 	}
 }

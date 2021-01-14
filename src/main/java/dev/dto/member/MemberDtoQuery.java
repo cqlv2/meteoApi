@@ -3,21 +3,19 @@ package dev.dto.member;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import dev.dto.SuperDto;
 
 //	*JSON*
 //	{
-//		"lastName":"Amianto"                     :string
-//		"firstName":"Sylvain"                  :string
-//		"userName":"cqlV2"                  :string
-//		"email":"samianto@cqlteam.com"      :string
-//		"password":"superPass"              :string
-//		"roleId":1                          :number
-//		"favotiresId":null                  :number aray
-//		"topicsId":null                     :number aray
-//		"subjectsId":null                   :number aray
-//		"answersId":null                    :number aray
-//		"commentsId":null                   :number aray
+//    "lastName": "userLastName",
+//    "firstName": "userFirstName",
+//    "userName": "userUserName",
+//    "password": "userPassword",
+//    "email": "userEmail",
+//    "roleId" : 1
 //	}
 
 /**
@@ -30,19 +28,31 @@ import dev.dto.SuperDto;
  *
  */
 public class MemberDtoQuery extends SuperDto {
+	@NotNull
+	@NotEmpty
 	private String lastName;
+	@NotNull
+	@NotEmpty
 	private String firstName;
+	@NotNull
+	@NotEmpty
 	private String userName;
+	@NotNull
+	@NotEmpty
 	private String email;
+	@NotNull
+	@NotEmpty
 	private String password;
+	@NotNull
 	private Long roleId;
+
 	private List<Long> favoritesId = new ArrayList<>();
 	private List<Long> topics = new ArrayList<>();
 //	private List<Long> subjects = new ArrayList<>();
 //	private List<Long> answers = new ArrayList<>();
 //	private List<Long> comments = new ArrayList<>();
 
-	//getteurSetteur
+	// getteurSetteur
 	public String getLastName() {
 		return lastName;
 	}

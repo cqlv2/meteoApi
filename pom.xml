@@ -92,6 +92,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
+				<!-- connection bdd -->
 				<jdbc.driver>com.mysql.cj.jdbc.Driver</jdbc.driver>
 				<jdbc.url>jdbc:mysql://localhost:3306/diginamic_meteo</jdbc.url>
 				<jdbc.user>root</jdbc.user>
@@ -99,6 +100,11 @@
 				<jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
 				<jdbc.connections.max.active>5</jdbc.connections.max.active>
 				<jpa.hibernate.ddl>update</jpa.hibernate.ddl>
+				<!-- SpringSecurity -->
+				<jwt.name>auth_cookie</jwt.name>
+				<jwt.secret>ajouterSectetKeyIci</jwt.secret>
+				<jwt.expiration>300</jwt.expiration>
+				<jwt.secure>false</jwt.secure>
 			</properties>
 			<dependencies>
 				<dependency>

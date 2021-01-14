@@ -6,10 +6,22 @@ import dev.dto.comment.CommentDtoQuery;
 import dev.dto.favorite.FavoriteDtoQuery;
 import dev.dto.member.MemberDtoQuery;
 import dev.dto.polluant.PolluantDtoQuery;
+import dev.dto.role.RoleDtoQuery;
 import dev.dto.subject.SubjectDtoQuery;
 import dev.dto.topic.TopicDtoQuery;
 import dev.dto.weather.WeatherDtoQuery;
-import dev.entity.*;
+import dev.entity.City;
+import dev.entity.Favorite;
+import dev.entity.ForumAnswer;
+import dev.entity.ForumComment;
+import dev.entity.ForumSubject;
+import dev.entity.ForumTopic;
+import dev.entity.Member;
+import dev.entity.Polluant;
+import dev.entity.Right;
+import dev.entity.Role;
+import dev.entity.SuperEntity;
+import dev.entity.Weather;
 
 /**
  * referral tool for the use of the transformer corresponding to the entity's
@@ -21,87 +33,90 @@ import dev.entity.*;
  */
 public class SuperTransformer {
 
-    /**
-     * @param entity entity to be referred
-     * @return an entity transform into DTO response
-     */
-    public static Object entityToDtoResponse(SuperEntity entity) {
-        switch (entity.getClass().getSimpleName()) {
+	/**
+	 * @param entity entity to be referred
+	 * @return an entity transform into DTO response
+	 */
+	public static Object entityToDtoResponse(SuperEntity entity) {
+		switch (entity.getClass().getSimpleName()) {
 
-            case "Member":
-                return MemberTransformer.entityToDtoResponse((Member) entity);
+		case "Member":
+			return MemberTransformer.entityToDtoResponse((Member) entity);
 
-            case "Role":
-                return RoleTransformer.entityToDtoResponse((Role) entity);
+		case "Role":
+			return RoleTransformer.entityToDtoResponse((Role) entity);
 
-            case "Right":
-                return RightTransformer.entityToDtoResponse((Right) entity);
+		case "Right":
+			return RightTransformer.entityToDtoResponse((Right) entity);
 
-            case "Favorite":
-                return FavoriteTransformer.entityToDtoResponse((Favorite) entity);
+		case "Favorite":
+			return FavoriteTransformer.entityToDtoResponse((Favorite) entity);
 
-            case "ForumAnswer":
-                return ForumAnswerTransformer.entityToDtoResponse((ForumAnswer) entity);
+		case "ForumAnswer":
+			return ForumAnswerTransformer.entityToDtoResponse((ForumAnswer) entity);
 
-            case "ForumComment":
-                return ForumCommentTransformer.entityToDtoResponse((ForumComment) entity);
+		case "ForumComment":
+			return ForumCommentTransformer.entityToDtoResponse((ForumComment) entity);
 
-            case "ForumSubject":
-                return ForumSubjectTransformer.entityToDtoResponse((ForumSubject) entity);
+		case "ForumSubject":
+			return ForumSubjectTransformer.entityToDtoResponse((ForumSubject) entity);
 
-            case "ForumTopic":
-                return ForumTopicTransformer.entityToDtoResponse((ForumTopic) entity);
+		case "ForumTopic":
+			return ForumTopicTransformer.entityToDtoResponse((ForumTopic) entity);
 
-            case "City":
-                return CityTransformer.entityToDtoResponse((City) entity);
+		case "City":
+			return CityTransformer.entityToDtoResponse((City) entity);
 
-            case "Weather":
-                return WeatherTransformer.entityToDtoResponse((Weather) entity);
+		case "Weather":
+			return WeatherTransformer.entityToDtoResponse((Weather) entity);
 
-            case "Polluant":
-                return PolluantTransformer.entityToDtoResponse((Polluant) entity);
+		case "Polluant":
+			return PolluantTransformer.entityToDtoResponse((Polluant) entity);
 
-            default:
-                // TODO gérer une exception
-                return null;
-        }
+		default:
+			// TODO gérer une exception
+			return null;
+		}
 
-    }
+	}
 
-    public static Object dtoToEntity(Object dtoQuery) {
-        switch (dtoQuery.getClass().getSimpleName()) {
+	public static Object dtoToEntity(Object dtoQuery) {
+		switch (dtoQuery.getClass().getSimpleName()) {
 
-            case "MemberDtoQuery":
-                return MemberTransformer.dtoToEntity((MemberDtoQuery) dtoQuery);
+		case "RoleDtoQuery":
+			return RoleTransformer.dtoToEntity((RoleDtoQuery) dtoQuery);
 
-            case "FavoriteDtoQuery":
-                return FavoriteTransformer.dtoToEntity((FavoriteDtoQuery) dtoQuery);
+		case "MemberDtoQuery":
+			return MemberTransformer.dtoToEntity((MemberDtoQuery) dtoQuery);
 
-            case "AnswerDtoQuery":
-                return ForumAnswerTransformer.dtoToEntity((AnswerDtoQuery) dtoQuery);
+		case "FavoriteDtoQuery":
+			return FavoriteTransformer.dtoToEntity((FavoriteDtoQuery) dtoQuery);
 
-            case "CommentDtoQuery":
-                return ForumCommentTransformer.dtoToEntity((CommentDtoQuery) dtoQuery);
+		case "AnswerDtoQuery":
+			return ForumAnswerTransformer.dtoToEntity((AnswerDtoQuery) dtoQuery);
 
-            case "SubjectDtoQuery":
-                return ForumSubjectTransformer.dtoToEntity((SubjectDtoQuery) dtoQuery);
+		case "CommentDtoQuery":
+			return ForumCommentTransformer.dtoToEntity((CommentDtoQuery) dtoQuery);
 
-            case "TopicDtoQuery":
-                return ForumTopicTransformer.dtoToEntity((TopicDtoQuery) dtoQuery);
+		case "SubjectDtoQuery":
+			return ForumSubjectTransformer.dtoToEntity((SubjectDtoQuery) dtoQuery);
 
-            case "CityDtoQuery":
-                return CityTransformer.dtoToEntity((CityDtoQuery) dtoQuery);
+		case "TopicDtoQuery":
+			return ForumTopicTransformer.dtoToEntity((TopicDtoQuery) dtoQuery);
 
-            case "WeatherDtoQuery":
-                return WeatherTransformer.dtoToEntity((WeatherDtoQuery) dtoQuery);
+		case "CityDtoQuery":
+			return CityTransformer.dtoToEntity((CityDtoQuery) dtoQuery);
 
-            case "PolluantDtoQuery":
-                return  PolluantTransformer.dtoToEntity((PolluantDtoQuery) dtoQuery);
+		case "WeatherDtoQuery":
+			return WeatherTransformer.dtoToEntity((WeatherDtoQuery) dtoQuery);
 
-            default:
-                //TODO gérer une exception
-                return null;
-        }
-    }
+		case "PolluantDtoQuery":
+			return PolluantTransformer.dtoToEntity((PolluantDtoQuery) dtoQuery);
+
+		default:
+			// TODO gérer une exception
+			return null;
+		}
+	}
 
 }

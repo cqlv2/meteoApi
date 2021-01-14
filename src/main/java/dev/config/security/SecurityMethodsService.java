@@ -19,11 +19,9 @@ import dev.repository.ForumCommentRepository;
 import dev.repository.ForumSubjectRepository;
 import dev.repository.MemberRepository;
 
-
-
 @Service
 public class SecurityMethodsService {
-	
+
 	@Autowired
 	private MemberRepository memberRepository;
 	@Autowired
@@ -34,80 +32,61 @@ public class SecurityMethodsService {
 	private ForumCommentRepository commentRepository;
 	@Autowired
 	FavoriteRepository favoriteRepository;
-	
+
 	private Long getConnectedUserId() {
-		String userName = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Member m = memberRepository.findByEmail(userName).orElse(null);
 		return m.getId();
 	}
-	
-	
-	
+
+	public boolean isItMe(Long userId) {
+		Member m = memberRepository.findById(userId).orElse(null);
+		return m.getId() == this.getConnectedUserId();
+	}
+
 	public boolean isMySubject(Long id) {
-		ForumSubject fs =  subjectRepository.findById(id).orElse(null);
-		return fs.getMember().getId()==this.getConnectedUserId();
-		
+		ForumSubject fs = subjectRepository.findById(id).orElse(null);
+		return fs.getMember().getId() == this.getConnectedUserId();
+
 	}
-	
+
 	public boolean isMyAnswer(Long id) {
-		ForumAnswer fa =  answerRepository.findById(id).orElse(null);
-		return fa.getMember().getId()==this.getConnectedUserId();
+		ForumAnswer fa = answerRepository.findById(id).orElse(null);
+		return fa.getMember().getId() == this.getConnectedUserId();
 	}
-	
+
 	public boolean isMyComment(Long id) {
-		ForumComment fc =  commentRepository.findById(id).orElse(null);
-		return fc.getMember().getId()==this.getConnectedUserId();
+		ForumComment fc = commentRepository.findById(id).orElse(null);
+		return fc.getMember().getId() == this.getConnectedUserId();
 	}
-	
+
 	public boolean isMyFavorite(Long id) {
-		Favorite f =  favoriteRepository.findById(id).orElse(null);
-		return f.getMember().getId()==this.getConnectedUserId();
+		Favorite f = favoriteRepository.findById(id).orElse(null);
+		return f.getMember().getId() == this.getConnectedUserId();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public boolean canRemoveFavorite(Long idFavToRem, UserDetails userD) throws RepositoryException {
 		Optional<Member> memberOpt = memberRepository.findByEmail(userD.getUsername());
-		if(memberOpt.isPresent()) {
+		if (memberOpt.isPresent()) {
 			for (Favorite fav : memberOpt.get().getFavorites()) {
-				if(fav.getId().equals(idFavToRem))return true;
+				if (fav.getId().equals(idFavToRem))
+					return true;
 			}
 			return false;
-		}else throw new RepositoryException("email not found");
-		
-		
-		//User u=userRepository.findByEmail(connectedUser.getUsername()).orElseThrow();
-	//	return u.getCells().parallelStream().anyMatch(cell-> cell.getId().equals(cellId));
-		
-		
-		
-		
+		} else
+			throw new RepositoryException("email not found");
+
+		// User u=userRepository.findByEmail(connectedUser.getUsername()).orElseThrow();
+		// return u.getCells().parallelStream().anyMatch(cell->
+		// cell.getId().equals(cellId));
+
 	}
-	
-	
-	
-	
+
 	public boolean isConnectedUser(Long memberId, UserDetails connectedUser) {
 		System.err.println(memberId);
 		System.err.println(connectedUser);
-		
-		
+
 		Member member = memberRepository.findById(memberId).orElse(null);
 		return member != null && member.getEmail().equals(connectedUser.getUsername());
 	}
 }
-
