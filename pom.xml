@@ -150,9 +150,9 @@
 			<properties>
 				<!-- connection bdd -->
 				<jdbc.driver>org.postgresql.Driver</jdbc.driver>
-				<jdbc.url>postgres://tiyhzrbbfkgmtr:53909f6f7a63de8109891d00a27eb5ef23af71ee059509805f436948022df9bb@ec2-54-246-90-10.eu-west-1.compute.amazonaws.com:5432/ddcben32tjh821</jdbc.url>
-				<jdbc.user>tiyhzrbbfkgmtr</jdbc.user>
-				<jdbc.pass>53909f6f7a63de8109891d00a27eb5ef23af71ee059509805f436948022df9bb</jdbc.pass>
+				<jdbc.url>ec2-54-247-94-127.eu-west-1.compute.amazonaws.com:5432/d3k2389a3p9r52</jdbc.url>
+				<jdbc.user>rbquuhzpypwlit</jdbc.user>
+				<jdbc.pass>1d339185e01e68d6b2367a2db66ab9f70ff204641e2e19cf359809641a1b98f7</jdbc.pass>
 				<jdbc.dialect>org.hibernate.dialect.PostgreSQLDialect</jdbc.dialect>
 				<jdbc.connections.max.active>5</jdbc.connections.max.active>
 				<jpa.hibernate.ddl>update</jpa.hibernate.ddl>
