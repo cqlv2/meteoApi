@@ -16,7 +16,11 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<!-- <java.version>11</java.version> -->
+		
+			<maven.compiler.source>1.8</maven.compiler.source>
+			<maven.compiler.target>1.8</maven.compiler.target>
+	
 	</properties>
 
 	<dependencies>
@@ -153,10 +157,8 @@
 				<jdbc.connections.max.active>5</jdbc.connections.max.active>
 				<jpa.hibernate.ddl>update</jpa.hibernate.ddl>
 				<!-- SpringSecurity -->
-				<!-- <jwt.name>auth_cookie</jwt.name>
-				<jwt.secret>ajouterSectetKeyIci</jwt.secret>
-				<jwt.expiration>300</jwt.expiration>
-				<jwt.secure>false</jwt.secure> -->
+				<!-- <jwt.name>auth_cookie</jwt.name> <jwt.secret>ajouterSectetKeyIci</jwt.secret> 
+					<jwt.expiration>300</jwt.expiration> <jwt.secure>false</jwt.secure> -->
 			</properties>
 			<dependencies>
 				<dependency>
