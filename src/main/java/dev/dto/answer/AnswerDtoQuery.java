@@ -15,6 +15,7 @@ import dev.dto.SuperDto;
 //		"contain":"bla bla bla",			:string
 //		"liked":0,							:0 or null
 //		"subjectId":1,						:forumSubject id
+//		"memberId" : 1						:member id
 //		"commentsId":null					:array of forumComments id
 //	}
 

@@ -94,6 +94,10 @@
 			<id>dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>env.PROFILE</name>
+					<value>dev</value>
+				</property>
 			</activation>
 			<properties>
 				<!-- connection bdd -->
@@ -156,9 +160,6 @@
 				<jdbc.dialect>org.hibernate.dialect.PostgreSQLDialect</jdbc.dialect>
 				<jdbc.connections.max.active>5</jdbc.connections.max.active>
 				<jpa.hibernate.ddl>update</jpa.hibernate.ddl>
-				<!-- SpringSecurity -->
-				<!-- <jwt.name>auth_cookie</jwt.name> <jwt.secret>ajouterSectetKeyIci</jwt.secret> 
-					<jwt.expiration>300</jwt.expiration> <jwt.secure>false</jwt.secure> -->
 			</properties>
 			<dependencies>
 				<dependency>
