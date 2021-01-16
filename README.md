@@ -14,37 +14,37 @@
 	<tbody>
 		<tr style='color: orange'>
 			<td>GET</td>
-			<td>/members</td>
+			<td>/api/members</td>
 			<td>Admin</td>
 			<td>list all members</td>
  		</tr>
 		<tr style='color : orange'>
 			<td>GET</td>
-			<td>/members/{id}</td>
+			<td>/api/members/{id}</td>
 			<td>Admin - Owner</td>
 			<td>search a member by his Id</td>
 		</tr>
 		<tr style='color : blue'>
 			<td>GET</td>
-			<td>/members/me</td>
+			<td>/api/members/me</td>
 			<td>Owner</td>
 			<td>show member connected</td>
 		</tr>
 		<tr style='color : green'>
 			<td>POST</td>
-			<td>/members</td>
+			<td>/api/members</td>
 			<td>Public</td>
 			<td>create new member</td>
 		</tr>
 		<tr style='color : orange'>
 			<td>PUT</td>
-			<td>/members/{id}</td>
+			<td>/api/members/{id}</td>
 			<td>Admin - Owner</td>
 			<td> Update member</td>
 		</tr>
 		<tr style='color : orange'>
 			<td>DELETE</td>
-			<td>/members/{id}</td>
+			<td>/api/members/{id}</td>
 			<td>Admin - Owner</td>
 			<td>delete member from his Id</td>
 		</tr>
@@ -125,31 +125,31 @@
 	<tbody>
 		<tr style='color : red'>
 			<td>GET</td>
-			<td>/favorite</td>
+			<td>/api/favorite</td>
 			<td>Nobody</td>
 			<td>Prohibited</td>
  		</tr>
 		<tr style='color : blue'>
 			<td>GET</td>
-			<td>/favorite/{id}</td>
+			<td>/api/favorite/{id}</td>
 			<td>Owner</td>
 			<td>search a favorite from Id</td>
 		</tr>
 		<tr style='color : blue'>
 			<td>POST</td>
-			<td>/favorite</td>
+			<td>/api/favorite</td>
 			<td>Connected user</td>
 			<td>create new favorite</td>
 		</tr>
 		<tr style='color : blue'>
 			<td>PUT</td>
-			<td>/favorite/{id}</td>
+			<td>/api/favorite/{id}</td>
 			<td>Owner</td>
 			<td> Update favorite</td>
 		</tr>
 		<tr style='color : blue'>
 			<td>DELETE</td>
-			<td>/favorite/{id}</td>
+			<td>/api/favorite/{id}</td>
 			<td>Owner</td>
 			<td>delete favorite from Id. <br>Automatic delete cascading by cities</td>
 		</tr>
@@ -227,37 +227,37 @@
 	<tbody>
 		<tr style='color : red'>
 			<td>GET</td>
-			<td>/cities</td>
+			<td>/api/cities</td>
 			<td>Nobody</td>
 			<td>Prohibited</td>
  		</tr>
 		<tr style='color : red'>
 			<td>GET</td>
-			<td>/cities/{id}</td>
+			<td>/api/cities/{id}</td>
 			<td>Nobody</td>
 			<td>Prohibited</td>
 		</tr>
 		<tr style='color : orange'>
 			<td>GET</td>
-			<td>/updatebdd</td>
+			<td>/api/cities/updatebdd</td>
 			<td>Admin</td>
 			<td>manually update bdd</td>
 		</tr>
 		<tr style='color : red'>
 			<td>POST</td>
-			<td>/cities</td>
+			<td>/api/cities</td>
 			<td>Nobody</td>
 			<td>Prohibited</td>
 		</tr>
 		<tr style='color : red'>
 			<td>PUT</td>
-			<td>/cities/{id}</td>
+			<td>/api/cities/{id}</td>
 			<td>Nobody</td>
 			<td>Prohibited</td>
 		</tr>
 		<tr style='color : orange'>
 			<td>DELETE</td>
-			<td>/cities/{id}</td>
+			<td>/api/cities/{id}</td>
 			<td>Admin</td>
 			<td>delete city from id</td>
 		</tr>
