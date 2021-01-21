@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -69,7 +71,7 @@ public class JWTAuthorizationFilter extends UsernamePasswordAuthenticationFilter
 				.sign(Algorithm.HMAC512(SECRET_KEY));
 		response.addHeader("Authorization", "Bearer " + token); 
 		ResponseCookie responseCookie = ResponseCookie.from(TOKEN_COOKIE, token).httpOnly(true).maxAge(EXPIRATION_TIME*1000)
-				.path("/").sameSite("None").secure(COOKIE_SECURE).build();
+				.path("/").sameSite("lax").secure(COOKIE_SECURE).build();
 		response.setHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
 
 	}

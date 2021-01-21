@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dev.dto.SuperDto;
 import dev.entity.SuperEntity;
 import dev.exceptions.RepositoryException;
 import dev.utils.transformer.SuperTransformer;
@@ -37,6 +36,7 @@ public abstract class SuperService<T extends SuperEntity, R extends JpaRepositor
 	 * 
 	 * @return a list of 0 to n value formatted in DTO
 	 */
+	@SuppressWarnings("unchecked")
 	public List<DtoRep> getAll() {
 		List<DtoRep> list = new ArrayList<>();
 		for (T entity : repository.findAll())
@@ -51,6 +51,7 @@ public abstract class SuperService<T extends SuperEntity, R extends JpaRepositor
 	 * @return a value corresponding to the id formatted in DTO
 	 * @throws RepositoryException exception thrown if id is not found
 	 */
+	@SuppressWarnings("unchecked")
 	public DtoRep getById(Long id) throws RepositoryException {
 		Optional<T> opt = repository.findById(id);
 		if (opt.isPresent())
@@ -64,6 +65,7 @@ public abstract class SuperService<T extends SuperEntity, R extends JpaRepositor
 	 * @param dtoQuery an instance of a dto Query Object
 	 * @return a dto of the created/modified entity
 	 */
+	@SuppressWarnings("unchecked")
 	public Object addUpdate(Object dtoQuery) {
 		return (DtoRep) SuperTransformer
 				.entityToDtoResponse(repository.save((T) SuperTransformer.dtoToEntity(dtoQuery)));

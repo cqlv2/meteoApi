@@ -30,9 +30,11 @@ public class MemberTransformer {
 		// encodage du password
 		m.setPassword(BcryptEncoder.encode(dtoRequest.getPassword()));
 		// ajour d'une instense de role
+
 		Role r = new Role();
 		r.setId(dtoRequest.getRoleId());
 		m.setRole(r);
+
 		// ajout des favories
 		for (Long favId : dtoRequest.getFavoritesId()) {
 			Favorite f = new Favorite();
@@ -45,24 +47,13 @@ public class MemberTransformer {
 			ft.setId(topId);
 			m.getTopics().add(ft);
 		}
-//		// ajout des Subject
-//		for (Long subId : dtoRequest.getSubjects()) {
-//			ForumSubject fs = new ForumSubject();
-//			fs.setId(subId);
-//			m.getSubjects().add(fs);
-//		}
-//		// ajout des Answers
-//		for (Long ansId : dtoRequest.getAnswers()) {
-//			ForumAnswer fa = new ForumAnswer();
-//			fa.setId(ansId);
-//			m.getAnswers().add(fa);
-//		}
-//		// ajout des Comments
-//		for (Long comId : dtoRequest.getComments()) {
-//			ForumComment fc = new ForumComment();
-//			fc.setId(comId);
-//			m.getComments().add(fc);
-//		}
+		// ajout des Subject
+		for (Long subId : dtoRequest.getSubjects()) {
+			ForumSubject fs = new ForumSubject();
+			fs.setId(subId);
+			m.getSubjects().add(fs);
+		}
+			
 		return m;
 	}
 
