@@ -69,7 +69,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 							.withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME*1000))
 							.sign(Algorithm.HMAC512(SECRET_KEY));
 					ResponseCookie responseCookie = ResponseCookie.from(TOKEN_COOKIE, newToken).httpOnly(true)
-							.maxAge(EXPIRATION_TIME).path("/").sameSite("None").secure(COOKIE_SECURE).build();
+							.maxAge(EXPIRATION_TIME).path("/").sameSite("lax").secure(COOKIE_SECURE).build();
 					response.setHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
 				}
 			}

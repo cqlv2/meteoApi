@@ -1,5 +1,9 @@
 package dev.config.security;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,7 +26,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	private UserDetailsService userDetailsService;
 	private PasswordEncoder passwordEncoder;
-	private final static String TOKEN_COOKIE = "auth_cookie_cql";
+	
 
 
 	public WebSecurityConfigurer(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
@@ -32,6 +36,15 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		Properties properties = new Properties();
+		try {
+			properties.load(new FileInputStream("src/main/resources/application.properties"));
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+		}
+		String TOKEN_COOKIE = properties.getProperty("jwt.auth_name");
+		
 		http
 		.csrf().disable()
         .cors()

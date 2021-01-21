@@ -15,13 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.config.security.SecurityMethodsService;
 import dev.dto.member.MemberDtoQuery;
 import dev.dto.member.MemberDtoResponse;
 import dev.entity.Member;
+import dev.exceptions.EmailException;
 import dev.exceptions.RepositoryException;
+import dev.exceptions.enumException;
 import dev.service.MemberService;
 
 @RestController
@@ -46,25 +49,96 @@ public class MemberCtrl extends SuperController<Member, MemberService, MemberDto
 
 	@Override
 	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
-	public ResponseEntity<?> findById(Long id) {
+	public ResponseEntity<?> findById(@PathVariable Long id) {
 		// TODO Auto-generated method stub
 		return super.findById(id);
 	}
 
 	@Override
 	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
-	public ResponseEntity<?> edit(Long id, @Valid MemberDtoQuery dtoQuery, BindingResult resValue) {
+	public ResponseEntity<?> edit(@PathVariable Long id, @Valid MemberDtoQuery dtoQuery, BindingResult resValue) {
 		// TODO Auto-generated method stub
 		return super.edit(id, dtoQuery, resValue);
 	}
 
+	
+	/**
+	 * only update the lastName of a member
+	 * @param id
+	 * @param value
+	 * @return
+	 */
+	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
+	@PutMapping("/{id}/lastname")
+	public ResponseEntity<?> updateLastName(@PathVariable Long id, @RequestParam String value) {
+
+		try {
+			return ResponseEntity.ok().body(service.updateLastName(value, id));
+		} catch (RepositoryException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
+	@PutMapping("/{id}/firstname")
+	public ResponseEntity<?> updateFirstName(@PathVariable Long id, @RequestParam String value) {
+
+		try {
+			return ResponseEntity.ok().body(service.updateFirstName(value, id));
+		} catch (RepositoryException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
+	@PutMapping("/{id}/username")
+	public ResponseEntity<?> updateUserName(@PathVariable Long id, @RequestParam String value) {
+		try {
+			return ResponseEntity.ok().body(service.updateUserName(value, id));
+		} catch (RepositoryException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
+	@PutMapping("/{id}/email")
+	public ResponseEntity<?> updateUserEmail(@PathVariable Long id, @RequestParam String value) {
+		
+			try {
+				return ResponseEntity.ok().body(service.updateUserEmail(value, id));
+			} catch (RepositoryException | EmailException e) {
+				return ResponseEntity.badRequest().body(e.getMessage());
+			}	
+	}
+	
+	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
+	@PutMapping("/{id}/password")
+	public ResponseEntity<?> updateUserpassword(@PathVariable Long id, @RequestParam String value) {
+		try {
+			return ResponseEntity.ok().body(service.updateUserPasssword(value, id));
+		} catch (RepositoryException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	@PutMapping("/{id}/role")
+	public ResponseEntity<?> updateUserRole(@PathVariable Long id, @RequestParam String value) {
+		try {
+			return ResponseEntity.ok().body(service.updateUserRole(value, id));
+		} catch (RepositoryException | enumException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+	
+	
 	@Override
 	@PreAuthorize("@securityMethodsService.isItMe(#id) or hasAuthority('ROLE_ADMIN')")
 	public ResponseEntity<?> remove(Long id) {
 		// TODO Auto-generated method stub
 		return super.remove(id);
+		
 	}
-	
-	
 
 }

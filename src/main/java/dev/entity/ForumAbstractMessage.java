@@ -16,29 +16,22 @@ public class ForumAbstractMessage extends SuperEntity {
 
 	protected String contain;
 	protected Integer liked;
-	@ManyToOne
-	@JoinColumn(name = "member_id")
-	private Member member;
-	//getteur/setteur
+
+	// getteur/setteur
 	public String getContain() {
 		return contain;
 	}
+
 	public void setContain(String contain) {
 		this.contain = contain;
 	}
+
 	public Integer getLiked() {
 		return liked;
 	}
+
 	public void setLiked(Integer liked) {
 		this.liked = liked;
 	}
-	public Member getMember() {
-		return member;
-	}
-	public void setMember(Member member) {
-		this.member = member;
-	}
-	
-	
 
 }

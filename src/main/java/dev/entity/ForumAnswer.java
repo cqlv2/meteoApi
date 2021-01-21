@@ -12,6 +12,10 @@ import javax.persistence.OneToMany;
 @Entity
 @DiscriminatorValue("ANSWER")
 public class ForumAnswer extends ForumAbstractMessage {
+	
+	@ManyToOne
+	@JoinColumn(name = "member_id")
+	private Member member;
 
 	// une reponse appartient à un sujet
 	@ManyToOne
@@ -23,6 +27,13 @@ public class ForumAnswer extends ForumAbstractMessage {
 	private List<ForumComment> comments=new ArrayList<>();
 	
 	// getteurSetteur
+	
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 
 	public ForumSubject getSubject() {
 		return subject;
@@ -39,5 +50,6 @@ public class ForumAnswer extends ForumAbstractMessage {
 	public void setComments(List<ForumComment> comments) {
 		this.comments = comments;
 	}
+	
 
 }
