@@ -8,12 +8,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
 @Table(name = "forum_message")
 public class ForumAbstractMessage extends SuperEntity {
 
+	@Type(type="text")
 	protected String contain;
 	protected Integer liked;
 

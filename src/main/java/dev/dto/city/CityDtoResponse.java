@@ -22,6 +22,8 @@ public class CityDtoResponse extends SuperDto {
 	private String department;
 	private List<WeatherDtoResponse> weathers = new ArrayList<>();
 	private List<PolluantDtoResponse> polluants = new ArrayList<>();
+	private Double longitude;
+	private Double latitude;
 
 	// constructeur
 	public CityDtoResponse(City entity) {
@@ -32,6 +34,10 @@ public class CityDtoResponse extends SuperDto {
 		this.population = entity.getPopulation();
 		this.state = entity.getState();
 		this.department = entity.getDepartment();
+		this.longitude = entity.getLongitude();
+		this.latitude = entity.getLatitude();
+		
+		
 		for (Weather weather : entity.getWeathers()) {
 			this.weathers.add(WeatherTransformer.entityToDtoResponse(weather));
 		}
@@ -96,5 +102,23 @@ public class CityDtoResponse extends SuperDto {
 	public void setPolluants(List<PolluantDtoResponse> polluants) {
 		this.polluants = polluants;
 	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	
 
 }
