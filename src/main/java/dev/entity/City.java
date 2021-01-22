@@ -16,6 +16,8 @@ public class City extends SuperEntity {
 	private Long population;
 	private String state;
 	private String department;
+	private Double longitude;
+	private Double latitude;
 
 	
 	@OneToOne( mappedBy = "city", cascade = CascadeType.REMOVE )
@@ -92,5 +94,23 @@ public class City extends SuperEntity {
 	public void setPolluants(List<Polluant> polluants) {
 		this.polluants = polluants;
 	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	
 
 }

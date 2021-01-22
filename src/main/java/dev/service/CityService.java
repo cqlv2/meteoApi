@@ -36,7 +36,7 @@ public class CityService extends SuperService<City, CityRepository, CityDtoRespo
 
 //	methode appeler au demarage de l'application
 	public void updateCityFromApi() throws JsonMappingException, JsonProcessingException {
-		
+
 		// si la liste de ville est vide
 		if (this.getAll().size() == 0) {
 			Long start = System.currentTimeMillis();
@@ -60,19 +60,27 @@ public class CityService extends SuperService<City, CityRepository, CityDtoRespo
 				for (JsonNode departmentJn : departments) {
 					String department = departmentJn.path("nom").asText();
 					String departementCode = departmentJn.path("code").asText();
-					response = rt.getForEntity(api + "departements/" + departementCode + "/communes?fields=nom,code,population&format=json&geometry=centre", String.class);
+					response = rt.getForEntity(
+							api + "departements/" + departementCode
+									+ "/communes?fields=nom,code,population,centre&format=json&geometry=centre",
+							String.class);
 					JsonNode villes = mapper.readTree(response.getBody());
-					
+
 					// creation de la liste des dto city
 					List<CityDtoQuery> cityList = new ArrayList<CityDtoQuery>();
 					for (JsonNode villeJn : villes) {
-//						creation du dtoQuery
+						// creation du dtoQuery
 						CityDtoQuery cDtoQ = new CityDtoQuery();
 						cDtoQ.setCityName(villeJn.path("nom").asText());
 						cDtoQ.setDepartment(department);
 						cDtoQ.setState(state);
 						cDtoQ.setInseeCode(villeJn.path("code").asText());
 						cDtoQ.setPopulation(villeJn.path("population").asLong());
+						
+						JsonNode coordone = villeJn.path("centre").path("coordinates");
+						cDtoQ.setLongitude(coordone.get(0).asDouble());
+						cDtoQ.setLatitude(coordone.get(1).asDouble());
+
 						cityList.add(cDtoQ);
 					}
 
@@ -89,9 +97,9 @@ public class CityService extends SuperService<City, CityRepository, CityDtoRespo
 				}
 			}
 			Long stop = System.currentTimeMillis();
-			String time = new SimpleDateFormat("mm:ss:SSS").format(new Date(stop - start));	
-			System.out.println("... city database updating in "+time);
-		}else {
+			String time = new SimpleDateFormat("mm:ss:SSS").format(new Date(stop - start));
+			System.out.println("... city database updating in " + time);
+		} else {
 			System.out.println("city database is up to date.");
 		}
 	}

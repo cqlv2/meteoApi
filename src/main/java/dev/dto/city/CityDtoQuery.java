@@ -14,6 +14,10 @@ public class CityDtoQuery extends SuperDto {
 	private String department;
 	private List<Long> weathersId = new ArrayList<>();
 	private List<Long> polluantsId = new ArrayList<>();
+	private Double longitude;
+	private Double latitude;
+
+	
 
 	// getter setter
 	public String getCityName() {
@@ -71,5 +75,22 @@ public class CityDtoQuery extends SuperDto {
 	public void setPolluantsId(List<Long> polluantsId) {
 		this.polluantsId = polluantsId;
 	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+	
 
 }

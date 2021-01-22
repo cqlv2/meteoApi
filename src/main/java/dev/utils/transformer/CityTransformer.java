@@ -21,6 +21,8 @@ public class CityTransformer {
 		c.setCityName(dtoQuery.getCityName());
 		c.setState(dtoQuery.getState());
 		c.setDepartment(dtoQuery.getDepartment());
+		c.setLongitude(dtoQuery.getLongitude());
+		c.setLatitude(dtoQuery.getLatitude());
 
 		if (dtoQuery.getWeathersId() != null) {
 			for (Long weatherId : dtoQuery.getWeathersId()) {
