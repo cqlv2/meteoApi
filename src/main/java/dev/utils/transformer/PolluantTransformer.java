@@ -15,8 +15,12 @@ public class PolluantTransformer {
 		Polluant polluant = new Polluant();
 		polluant.setId(dtoQuery.getId() != null ? dtoQuery.getId() : null);
 		polluant.setDateAdd(dtoQuery.getDateAdd());
-		polluant.setLabel(dtoQuery.getLabel());
-		polluant.setValue(dtoQuery.getValue());
+		polluant.setRate(dtoQuery.getRate());
+		polluant.setDominentpol(dtoQuery.getDominentpol());
+		polluant.setNo2(dtoQuery.getNo2());
+		polluant.setO3(dtoQuery.getO3());
+		polluant.setPm10(dtoQuery.getPm10());
+		polluant.setPm25(dtoQuery.getPm25());
 		if (dtoQuery.getCityId() != null) {
 			City city = new City();
 			city.setId(dtoQuery.getCityId());

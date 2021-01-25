@@ -74,7 +74,12 @@ public class WeatherService extends SuperService<Weather, WeatherRepository, Wea
 			JsonNode wind = root.path("wind");
 
 			// creation du DTO
+	
 			WeatherDtoQuery wDtoQ = new WeatherDtoQuery();
+			wDtoQ.setIcone(weather.get(0).path("icon").asText());
+			wDtoQ.setLabel(weather.get(0).path("main").asText());
+			wDtoQ.setDescription(weather.get(0).path("description").asText());
+			
 			wDtoQ.setHumidity(main.path("humidity").asDouble());
 			wDtoQ.setPressure(main.path("pressure").asDouble());
 			wDtoQ.setTemp(main.path("temp").asDouble());

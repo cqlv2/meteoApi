@@ -15,6 +15,9 @@ public class WeatherTransformer {
 		Weather w = new Weather();
 		w.setId(dtoQuery.getId() != null ? dtoQuery.getId() : null);
 		w.setDateAdd(dtoQuery.getDateAdd());
+		w.setIcone(dtoQuery.getIcone());
+		w.setLabel(dtoQuery.getLabel());
+		w.setDescription(dtoQuery.getDescription());
 		w.setHumidity(dtoQuery.getHumidity());
 		w.setPressure(dtoQuery.getPressure());
 		w.setTemp(dtoQuery.getTemp());

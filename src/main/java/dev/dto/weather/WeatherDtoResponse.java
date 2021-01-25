@@ -6,6 +6,9 @@ import dev.entity.Weather;
 
 public class WeatherDtoResponse extends SuperDto{
 	
+	private String icone;
+	private String label;
+	private String description;
 	private Double temp;
 	private Double tempMax;
 	private Double tempMin;
@@ -17,6 +20,9 @@ public class WeatherDtoResponse extends SuperDto{
 	//private Meteo prevision;
 	
 	public WeatherDtoResponse(Weather entity) {
+		this.icone = entity.getIcone();
+		this.label = entity.getLabel();
+		this.description = entity.getDescription();
 		this.id = entity.getId();
 		this.dateAdd = entity.getDateAdd();
 		this.temp = entity.getTemp();
@@ -29,6 +35,31 @@ public class WeatherDtoResponse extends SuperDto{
 	}
 	
 	// getter setter
+	
+	public String getIcone() {
+		return icone;
+	}
+
+	public void setIcone(String icone) {
+		this.icone = icone;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Double getTemp() {
 		return temp;
 	}
