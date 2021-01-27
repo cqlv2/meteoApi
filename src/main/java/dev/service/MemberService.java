@@ -29,6 +29,12 @@ public class MemberService extends SuperService<Member, MemberRepository, Member
 	@Autowired
 	private RoleService roleServ;
 
+	public Member getEntityById(Long memberId) throws RepositoryException {
+		Optional<Member> optMember = this.repository.findById(memberId);
+		if (optMember.isPresent()) return optMember.get();
+		else throw new RepositoryException("member_id non trouvée");
+	}
+	
 	/**
 	 * checked if an admin is present in the database and created it if necessary
 	 * 

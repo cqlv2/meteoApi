@@ -2,6 +2,6 @@ package dev.enumeration;
 
 public enum PolluantEnum {
 	
-	NO2, O3, PM10, PM25
+	PRINCIPAL_POLLUANT, RATE, NO2, O3, PM10, PM25
 
 }

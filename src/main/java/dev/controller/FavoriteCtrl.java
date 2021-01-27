@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.dto.favorite.FavoriteDtoQuery;
 import dev.dto.favorite.FavoriteDtoResponse;
 import dev.entity.Favorite;
+import dev.exceptions.RepositoryException;
 import dev.service.FavoriteService;
 
 @RestController
@@ -40,6 +42,16 @@ public class FavoriteCtrl extends SuperController<Favorite, FavoriteService, Fav
 	@PreAuthorize("@securityMethodsService.isMyFavorite(#id)")
 	public ResponseEntity<?> remove(@PathVariable Long id) {
 		return super.remove(id);
+	}
+	
+	
+	@GetMapping("/member/{id}")
+	public ResponseEntity<?> getFavoriteByMember(@PathVariable Long id) {
+		try {
+			return ResponseEntity.ok().body(this.service.getByMemberId(id));
+		} catch (RepositoryException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 
 
