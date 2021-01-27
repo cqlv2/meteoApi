@@ -39,7 +39,7 @@ public class WeatherService extends SuperService<Weather, WeatherRepository, Wea
 	 * @throws JsonMappingException
 	 * @throws JsonProcessingException
 	 */
-	@Scheduled(initialDelay = 300 * 1000, fixedDelay = 3600 * 1000)
+	@Scheduled(initialDelay = 3 * 1000, fixedDelay = 3600 * 1000)
 	public void updateFromApi() throws JsonMappingException, JsonProcessingException {
 		// mise en place du chrono pour mesurer la durée de la requete
 		Long start = System.currentTimeMillis();

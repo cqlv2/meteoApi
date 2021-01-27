@@ -26,6 +26,17 @@ import dev.repository.CityRepository;
 @Transactional
 public class CityService extends SuperService<City, CityRepository, CityDtoResponse, CityDtoQuery> {
 
+	public String[] getAllStates(){
+		return this.repository.getState();
+	}
+	
+	
+	public String[] getAllDepartment() {
+		return this.repository.getDepartment();
+	}
+	
+	
+	
 	/**
 	 * method call when starting the application. it searches and adds the 5 largest
 	 * cities of each department of France in database if it is empty
@@ -103,5 +114,12 @@ public class CityService extends SuperService<City, CityRepository, CityDtoRespo
 			System.out.println("city database is up to date.");
 		}
 	}
+
+
+
+
+
+
+
 
 }
