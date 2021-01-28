@@ -3,17 +3,14 @@ package dev.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class ForumSubject extends SuperEntity {
 
 	private String label;
 
-	@OneToMany(targetEntity = ForumAnswer.class, mappedBy = "subject")
+	@OneToMany(cascade = CascadeType.REMOVE,targetEntity = ForumAnswer.class, mappedBy = "subject")
 	private List<ForumAnswer> answer = new ArrayList<>();
 
 	@ManyToOne

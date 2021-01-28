@@ -3,12 +3,7 @@ package dev.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("COMMENT")
@@ -24,7 +19,7 @@ public class ForumComment extends ForumAbstractMessage {
 	private ForumAbstractMessage origin;
 
 	// une réponse peut avoir 0 a n réponse
-	@OneToMany(targetEntity = ForumComment.class, mappedBy = "origin")
+	@OneToMany(cascade = CascadeType.REMOVE, targetEntity = ForumComment.class, mappedBy = "origin")
 	private List<ForumComment> comments = new ArrayList<>();
 	
 	// GetteurSetteur
