@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class City extends SuperEntity {
@@ -20,8 +20,8 @@ public class City extends SuperEntity {
 	private Double latitude;
 
 	
-	@OneToOne( mappedBy = "city", cascade = CascadeType.REMOVE )
-    private Favorite favorite;
+	@OneToMany( mappedBy = "city", cascade = CascadeType.REMOVE )
+    private List<Favorite> favorite = new ArrayList<Favorite>();
 	
 	
 	@OneToMany(targetEntity = Weather.class, mappedBy = "city", cascade = CascadeType.REMOVE)
@@ -71,11 +71,11 @@ public class City extends SuperEntity {
 		this.department = department;
 	}
 
-	public Favorite getFavorite() {
+	public List<Favorite> getFavorite() {
 		return favorite;
 	}
 
-	public void setFavorite(Favorite favorite) {
+	public void setFavorite(List<Favorite> favorite) {
 		this.favorite = favorite;
 	}
 

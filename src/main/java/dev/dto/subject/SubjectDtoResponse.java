@@ -13,6 +13,9 @@ public class SubjectDtoResponse extends SuperDto {
 	
 	private String label;
 	private List<AnswerDtoResponse> answers=new ArrayList<AnswerDtoResponse>();
+	private String memberLastName;
+	private String memberFirstName;
+	private Long memberId;
 	//constructeur
 	public SubjectDtoResponse(ForumSubject entity) {
 		this.id= entity.getId();
@@ -21,8 +24,36 @@ public class SubjectDtoResponse extends SuperDto {
 		for (ForumAnswer  fa : entity.getAnswer()) {
 			this.answers .add(ForumAnswerTransformer.entityToDtoResponse(fa));
 		}
+		this.memberLastName = entity.getMember().getLastName();
+		this.memberFirstName= entity.getMember().getFirstName();
+		this.memberId= entity.getMember().getId();
+		
 	}
 	//getteurSetteur
+	public String getMemberLastName() {
+		return memberLastName;
+	}
+
+	public void setMemberLastName(String memberLastName) {
+		this.memberLastName = memberLastName;
+	}
+
+	public String getMemberFirstName() {
+		return memberFirstName;
+	}
+
+	public void setMemberFirstName(String memberFirstName) {
+		this.memberFirstName = memberFirstName;
+	}
+
+	public Long getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Long memberId) {
+		this.memberId = memberId;
+	}
+
 	public String getLabel() {
 		return label;
 	}

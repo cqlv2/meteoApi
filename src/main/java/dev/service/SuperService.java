@@ -82,6 +82,4 @@ public abstract class SuperService<T extends SuperEntity, R extends JpaRepositor
 		else throw new RepositoryException("id introuvable");
 		
 	}
-
-
 }

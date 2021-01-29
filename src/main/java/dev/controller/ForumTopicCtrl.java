@@ -2,6 +2,7 @@ package dev.controller;
 
 import javax.validation.Valid;
 
+import dev.exceptions.RepositoryException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
@@ -39,5 +40,14 @@ public class ForumTopicCtrl extends SuperController<ForumTopic,ForumTopicService
 		return super.remove(id);
 	}
 
-	
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	@PutMapping("/edit/{id}")
+	public ResponseEntity<?> editLabel(@PathVariable Long id ,@RequestBody String label) {
+		try {
+			return ResponseEntity.ok().body(this.service.editLabel(id, label));
+		} catch (RepositoryException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
 }

@@ -24,10 +24,12 @@ public class Favorite extends SuperEntity {
 	@Enumerated(EnumType.STRING)
 	@ElementCollection
 	private List<WeatherEnum> infoWeather;
+	
 	@ManyToOne
 	@JoinColumn(name = "member_id")
 	private Member member;
-	@OneToOne
+	
+	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
 

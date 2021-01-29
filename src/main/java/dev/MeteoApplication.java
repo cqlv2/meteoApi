@@ -17,7 +17,7 @@ public class MeteoApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
 				.allowedOrigins("http://localhost:4200")
-				.allowedMethods("GET", "POST", "PATCH", "PUT", "OPTIONS")
+				.allowedMethods("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS")
 				.allowCredentials(true)
 				;
 						
