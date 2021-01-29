@@ -3,6 +3,7 @@ package dev.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -23,7 +24,7 @@ public class ForumAnswer extends ForumAbstractMessage {
 	private ForumSubject subject;
 
 	// une reponse peut avoir de o a n commentaires
-	@OneToMany(targetEntity = ForumComment.class, mappedBy = "origin")
+	@OneToMany(cascade = CascadeType.REMOVE, targetEntity = ForumComment.class, mappedBy = "origin")
 	private List<ForumComment> comments=new ArrayList<>();
 	
 	// getteurSetteur
