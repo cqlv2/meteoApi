@@ -16,7 +16,7 @@ import dev.repository.ForumCommentRepository;
 
 public class ForumCommentService extends SuperService<ForumComment, ForumCommentRepository, CommentDtoResponse, CommentDtoQuery>{
 
-	public CommentDtoResponse editContain(Long id, String contain) throws RepositoryException {
+	public CommentDtoResponse editContain(Long id, String contain) throws RepositoryException {		
 		if (repository.updateContain(id, contain) == 1)
 			return this.getById(id);
 		else

@@ -34,7 +34,7 @@ public class ForumCommentCtrl extends SuperController<ForumComment, ForumComment
 		return super.remove(id);
 	}
 	
-	@PreAuthorize("@securityMethodsService.isMyAnswer(#id) or hasAuthority('ROLE_ADMIN')")
+	@PreAuthorize("@securityMethodsService.isMyComment(#id) or hasAuthority('ROLE_ADMIN')")
 	@PutMapping("/edit/{id}")
 	public ResponseEntity<?> editContain(@PathVariable Long id ,@RequestBody String contain) {
 		try {
